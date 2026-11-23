@@ -64,7 +64,7 @@
         /* Họa tiết nền: JS gắn lớp .deco riêng cho từng slide (vị trí / kích thước / góc xoay / loại / màu khác nhau từng slide, không lặp một mẫu cố định) — luôn nằm dưới nội dung */
         border:var(--bd); border-radius:0;
         box-shadow:none;
-        padding:clamp(20px,2.3vw,36px);
+        padding:clamp(32px,3.4vw,56px) clamp(36px,4.5vw,76px);
         display:flex; flex-direction:column; gap:clamp(18px,2.4vw,28px);
         visibility:hidden; opacity:0; pointer-events:none;
       }
@@ -83,7 +83,7 @@
       .deco .p-tri{ clip-path:polygon(50% 0, 100% 100%, 0 100%); }
       .deco .p-plus{ clip-path:polygon(38% 0, 62% 0, 62% 38%, 100% 38%, 100% 62%, 62% 62%, 62% 100%, 38% 100%, 38% 62%, 0 62%, 0 38%, 38% 38%); }
       /* Slide bảng: đệm & khoảng cách gọn hơn để bảng vừa một màn hình ở scale 1 */
-      .slide.dense{ padding:20px 26px; gap:14px; }
+      .slide.dense{ padding:clamp(26px,2.8vw,42px) clamp(32px,3.8vw,60px); gap:14px; }
       .slide.dense .fitwrap{ gap:14px; }
       .slide.dense .s-title{ font-size:clamp(34px,4vw,56px); }
       /* Bảng trong slide dense: chữ bảng 28px (trên mức tối thiểu 18px), ô rút còn từ khóa 2–3 từ,
@@ -503,7 +503,7 @@
         .impact-card h4{ font-size:34px; } .impact-card p{ font-size:32px; }
         .ticks li{ font-size:30px; } .ticks.big li{ font-size:36px; }
         .card .ticks li{ font-size:30px; }
-        .slide{ width:100vw; height:100dvh; padding:24px 20px 30px; border-radius:0; }
+        .slide{ width:100vw; height:100dvh; padding:28px 24px 36px; border-radius:0; }
         .fsbtn{ width:16px; height:44px; right:0; bottom:12px; border-radius:12px 0 0 12px; }
         .fsbtn:hover, .fsbtn:focus-visible, .fsbtn.out{ width:44px; }
         .fsbtn svg{ width:22px; height:22px; }
