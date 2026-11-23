@@ -488,7 +488,7 @@
       .menu-grid .n{ font-family:var(--font-m); font-weight:700; background:var(--yellow); border:2px solid var(--ink); border-radius:7px; padding:1px 7px; flex:none; }
 
       /* ---------- RESPONSIVE ---------- */
-      @media (max-width:1020px){
+      @media screen and (max-width:1020px){
         .g4{ grid-template-columns:repeat(2,1fr); }
         .gal{ grid-template-columns:repeat(2,1fr); }
         .cover-grid{ grid-template-columns:1fr; }
@@ -496,7 +496,7 @@
         .cover-art .frame{ aspect-ratio:46/40; }
         .cover .chiprow{ display:flex; }
       }
-      @media (max-width:760px){
+      @media screen and (max-width:760px){
         .g2,.g3{ grid-template-columns:1fr; }
         .impact-grid{ grid-template-columns:1fr; }
         .impact-card,.impact-card.wide{ grid-column:auto; }
@@ -582,9 +582,9 @@
            khi fitwrap được căn giữa theo chiều dọc */
         .fitwrap{ transform-origin:0 0; position:static !important; }
         .rv{ opacity:1 !important; }
-        /* Ẩn toàn bộ điều hướng + họa tiết nền tốn mực khi in: nút chuyển slide, vùng mép,
-           mục lục, fullscreen, in, thanh tiến độ, menu — chỉ còn nội dung slide */
-        .controls,.progress,.menu,.side-zone,.deco,.fsbtn,.tocbtn{ display:none !important; }
+        /* Ẩn toàn bộ điều hướng khi in: nút chuyển slide, vùng mép, mục lục, fullscreen,
+           thanh tiến độ, menu — giữ nguyên họa tiết nền .deco để bản PDF khớp bản trình chiếu */
+        .controls,.progress,.menu,.side-zone,.fsbtn,.tocbtn{ display:none !important; }
       }
     </style>
   </head>
@@ -1298,7 +1298,7 @@
       <section class="slide divider" data-title="Cảm ơn" style="background-color:var(--yellow)">
         <span class="s-num" style="position:absolute; top:22px; right:22px">30 / 30</span>
         <div style="display:flex; flex-direction:column; align-items:center; gap:clamp(18px,2.8vw,34px)">
-          <h2 class="rv" style="--d:.08s; font-family:var(--font-d); font-weight:900; text-transform:uppercase; font-size:clamp(38px,6.6vw,88px); line-height:1.02; letter-spacing:-.02em; max-width:26ch; text-align:center">Cảm ơn thầy cô và các bạn đã lắng nghe! <svg class="wiggle title-hand" viewBox="0 0 48 48" aria-hidden="true"><path d="M17 45V30c-4-2-6.5-5.5-6-9.5.4-2.7 2.6-4.3 5-3.7l1 .4V11c0-2.8 1.8-4.8 4-4.8s4 2 4 4.8V9c0-3 1.8-5 4-5s4 2 4 5v3c.6-2.4 2.4-3.8 4.2-3.4 2.2.5 3.4 2.6 3 5.2l-1.4 7.2c1.6 2.6 2.4 5.8 2.4 9.4 0 8.4-5.6 14.6-13.7 14.6z" fill="#ff7a1a" stroke="#141414" stroke-width="2.6" stroke-linejoin="round"/></svg></h2>
+          <h2 class="rv" style="--d:.08s; font-family:var(--font-d); font-weight:900; text-transform:uppercase; font-size:clamp(38px,6.6vw,88px); line-height:1.02; letter-spacing:-.02em; max-width:26ch; text-align:center">Cảm ơn thầy cô và các bạn đã lắng nghe!</h2>
           <p class="q rv" style="--d:.16s; text-align:center">Phòng ngừa độc chất hiệu quả bắt đầu từ môi trường sạch và thực phẩm an toàn.</p>
           <div class="chiprow rv" style="--d:.24s; justify-content:center">
             <span class="chip"><svg class="chil" viewBox="0 0 48 48" aria-hidden="true"><path d="M23 4.5 36 9v9.8c0 9.3-5.3 15.4-13 19.2C15.3 34.2 10 28.1 10 18.8V9z" fill="#12b76a" stroke="#141414" stroke-width="3" stroke-linejoin="round"/><path d="M16.8 23l4.5 4.5 8.6-9.2" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M39.5 5.5l1.1 2.9 2.9 1.1-2.9 1.1-1.1 2.9-1.1-2.9-2.9-1.1 2.9-1.1z" fill="#ffc900" stroke="#141414" stroke-width="1.5" stroke-linejoin="round"/></svg> Phòng ngừa chủ động</span>
@@ -1471,7 +1471,8 @@
           wrap.style.height = 'auto';
           var natH = wrap.scrollHeight;
           if (!natH){ wrap.style.flex = ''; wrap.style.height = ''; return; }
-          if (s.classList.contains('cover') && window.innerWidth > 1020){
+          var isPrint = window.matchMedia && window.matchMedia('print').matches;
+          if (s.classList.contains('cover') && (isPrint || window.innerWidth > 1020)){
             // Bìa xử lý riêng (chỉ ở layout 2 cột): bìa tự dàn đầy chiều cao bằng flex nội bộ
             // (lưới giãn hết chiều cao, cột chữ space-evenly, ảnh giãn đầy cột) nên khi vừa
             // thì giữ wrap ở chiều cao 100% — không thu về chiều cao tự nhiên rồi căn giữa,
