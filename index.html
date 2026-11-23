@@ -574,7 +574,9 @@
         .tbl thead{ display:table-header-group !important; }
         .tbl tbody{ display:table-row-group !important; }
         .tbl tr{ display:table-row !important; border:none !important; box-shadow:none !important; margin:0 !important; border-radius:0 !important; }
-        .tbl td{ display:table-cell !important; }
+        .tbl td{ display:table-cell !important; width:auto !important; }
+        .tbl td:first-child{ background:transparent !important; font-size:inherit !important; white-space:nowrap !important; }
+        .tbl.fix td:first-child{ white-space:normal !important; }
         .tbl td::before{ display:none !important; }
         /* Nội dung do JS (beforeprint → fitAll) co giãn vừa đúng khung 297×210mm của từng trang.
            fitwrap về static khi in: phần tử absolute trong slide (huy hiệu số trang ở slide cuối)
