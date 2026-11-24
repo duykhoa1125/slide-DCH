@@ -6,6 +6,11 @@
   var toc = document.getElementById('toc');
   var tocGrid = document.getElementById('tocGrid');
   var tocTitle = document.getElementById('tocTitle');
+  var srcModal = document.getElementById('srcModal');
+  var srcContent = document.getElementById('srcContent');
+  var imgZoom = document.getElementById('imgZoom');
+  var imgZoomPic = document.getElementById('imgZoomPic');
+  var imgZoomCap = document.getElementById('imgZoomCap');
   var edgeL = document.getElementById('edgeL');
   var edgeR = document.getElementById('edgeR');
 
@@ -91,10 +96,21 @@
   edgeL.addEventListener('click', function () { go(cur - 1); });
   edgeR.addEventListener('click', function () { go(cur + 1); });
 
+  function anyOverlayOpen() {
+    return toc.classList.contains('open') ||
+      (srcModal && srcModal.classList.contains('open')) ||
+      (imgZoom && imgZoom.classList.contains('open'));
+  }
+
+  function closeAllOverlays() {
+    toc.classList.remove('open');
+    if (srcModal) srcModal.classList.remove('open');
+    if (imgZoom) imgZoom.classList.remove('open');
+  }
+
   document.addEventListener('keydown', function (e) {
-    var tocOpen = toc.classList.contains('open');
-    if (e.key === 'Escape') { toc.classList.remove('open'); return; }
-    if (tocOpen) return;
+    if (e.key === 'Escape') { closeAllOverlays(); return; }
+    if (anyOverlayOpen()) return;
     if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
       e.preventDefault();
       go(cur + 1);
@@ -112,7 +128,7 @@
 
   var wheelLock = false;
   document.addEventListener('wheel', function (e) {
-    if (toc.classList.contains('open')) return;
+    if (anyOverlayOpen()) return;
     if (wheelLock || Math.abs(e.deltaY) < 24) return;
     wheelLock = true;
     go(cur + (e.deltaY > 0 ? 1 : -1));
@@ -144,6 +160,33 @@
   document.getElementById('btnToc').addEventListener('click', function () { toc.classList.add('open'); });
   document.getElementById('tocClose').addEventListener('click', function () { toc.classList.remove('open'); });
   document.getElementById('btnFs').addEventListener('click', toggleFs);
+
+  // Danh mục nguồn & phóng to hình khi trình chiếu HTML
+  if (window.DeckSources && srcContent) {
+    window.DeckSources.render(srcContent);
+  }
+  var btnSrc = document.getElementById('btnSrc');
+  var srcClose = document.getElementById('srcClose');
+  if (btnSrc && srcModal) {
+    btnSrc.addEventListener('click', function () { srcModal.classList.add('open'); });
+  }
+  if (srcClose && srcModal) {
+    srcClose.addEventListener('click', function () { srcModal.classList.remove('open'); });
+  }
+  if (imgZoom && imgZoomPic) {
+    stage.addEventListener('click', function (e) {
+      if (e.target.closest('a')) return;
+      var box = e.target.closest('.zoomable');
+      if (!box) return;
+      var img = box.querySelector('img');
+      if (!img) return;
+      imgZoomPic.src = img.src;
+      imgZoomPic.alt = img.alt || '';
+      if (imgZoomCap) imgZoomCap.textContent = img.alt || '';
+      imgZoom.classList.add('open');
+    });
+    imgZoom.addEventListener('click', function () { imgZoom.classList.remove('open'); });
+  }
 
   var doodlesDone = false;
   function initDoodles() {

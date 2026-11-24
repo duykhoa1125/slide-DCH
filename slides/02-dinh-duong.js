@@ -21,7 +21,7 @@
   <div class="slide-inner fit10">
     <div class="s-head"><div>
       <h2 class="title">Mở đầu: dinh dưỡng phòng bệnh <span class="hl g">có căn cứ chính thống</span></h2>
-      <p class="sub">Quyết định số <b>1982/QĐ-BYT</b>, Bộ Y tế, Hà Nội, ngày 01 tháng 7 năm 2026.</p></div><span class="s-num">11</span></div>
+      <p class="sub">Quyết định số <b>1982/QĐ-BYT</b>, Bộ Y tế, Hà Nội, ngày 01 tháng 7 năm 2026 (<a class="src-link" href="https://thuvienphapluat.vn/van-ban/The-thao-Y-te/Quyet-dinh-1982-QD-BYT-2026-Huong-dan-chuyen-mon-bien-phap-thuc-hien-dinh-duong-phong-benh-713081.aspx" target="_blank" rel="noopener noreferrer">Thư viện Pháp luật</a>).</p></div><span class="s-num">11</span></div>
     <div class="split">
       <div class="imgwhite" style="--d:0;padding:0;overflow:hidden"><img class="fill" src="assets/images/11-quyet-dinh-byt.jpg" alt="Ảnh chụp Quyết định 1982/QĐ-BYT của Bộ Y tế ban hành hướng dẫn chuyên môn các biện pháp thực hiện dinh dưỡng trong phòng bệnh" /></div>
       <div class="pts">
@@ -39,7 +39,7 @@
     <div class="s-head"><div>
       <h2 class="title">Gan, <span class="hl g">nhà máy</span> xử lý độc</h2></div><span class="s-num">12</span></div>
     <div class="split">
-      <div class="imgbig" style="--d:0"><img class="ph" src="assets/images/12-gan-chuyen-hoa.jpg" alt="Minh họa vai trò của gan: chuyển hóa dinh dưỡng, giải độc, tạo mật, dự trữ máu, tổng hợp albumin, hormon và dự trữ vitamin, khoáng chất" /><span class="cap">Chuyển hóa · giải độc · tạo mật · tổng hợp albumin, hormon · <b>dự trữ máu, vitamin, khoáng chất</b> (Vì sức khỏe cộng đồng, 2024)</span></div>
+      <div class="imgbig" style="--d:0"><img class="ph" src="assets/images/12-gan-chuyen-hoa.jpg" alt="Minh họa vai trò của gan: chuyển hóa dinh dưỡng, giải độc, tạo mật, dự trữ máu, tổng hợp albumin, hormon và dự trữ vitamin, khoáng chất" /><span class="cap">Chuyển hóa · giải độc · tạo mật · tổng hợp albumin, hormon · <b>dự trữ máu, vitamin, khoáng chất</b> (<a class="src-link on-dark" href="https://visuckhoecongdong.vn/cach-giai-doc-gan-tai-nha-don-gian-va-hieu-qua/" target="_blank" rel="noopener noreferrer">Vì sức khỏe cộng đồng, 25/09/2024</a>)</span></div>
       <div class="txtcol" style="gap:44px">
         <div class="stat" style="--d:1"><div class="num" style="color:var(--green)"><span data-count="500">500</span>+</div><p><b>chức năng</b> khác nhau do gan xử lý (theo Healthline, 2025).</p></div>
         <div class="stat" style="--d:2"><div class="num">1,2–1,5<small> kg</small></div><p>Cơ quan lớn nhất trong cơ thể người trưởng thành, nằm ở phía trên bên phải bụng, dưới cơ hoành.</p></div>
@@ -58,7 +58,7 @@
       <div class="pts">
         <div class="pt" style="--d:1"><span class="n">01</span><div><h3>Rượu &amp; thuốc lá</h3><p>Uống quá nhiều rượu gây suy giảm chức năng làm sạch, nhiễm mỡ, viêm gan, xơ gan; hóa chất trong khói thuốc gây tổn hại tế bào gan.</p></div></div>
         <div class="pt" style="--d:2"><span class="n">02</span><div><h3>Tiểu đường &amp; bổ sung quá mức</h3><p>Tiểu đường tăng nguy cơ gan nhiễm mỡ; quá liều vitamin A hoặc chế độ ăn không cân đối có thể gây nhiễm độc gan.</p></div></div>
-        <div class="pt" style="--d:3"><span class="n">03</span><div><h3>Hóa trị · bệnh lao · nhiễm trùng</h3><p>Thuốc hóa trị gây tổn hại gan; bệnh lao gây bệnh lao gan; nhiễm trùng đường ruột làm hại chức năng giải độc của gan.</p></div></div>
+        <div class="pt" style="--d:3"><span class="n">03</span><div><h3>Hóa trị · bệnh lao · nhiễm trùng</h3><p>Một số thuốc hóa trị, bệnh lao và nhiễm trùng đường ruột có thể ảnh hưởng đến gan hoặc chức năng xử lý độc chất của gan.</p></div></div>
       </div>
     </div>
   </div>
@@ -152,17 +152,17 @@
 
 <!-- 15 · THÁP XƯA / NAY -->
 <section class="slide" data-sec="Người 1, Dinh dưỡng" data-title="Tháp dinh dưỡng: xưa và nay">
-  <div class="slide-inner">
+  <div class="slide-inner fit19">
     <div class="s-head"><div>
       <h2 class="title">Tháp dinh dưỡng: <span class="hl">xưa</span> → <span class="hl g">nay</span></h2></div><span class="s-num">19</span></div>
     <div class="split eq">
       <div style="display:flex;flex-direction:column;min-height:0">
-        <div class="imgwhite" style="--d:0;flex:1;padding:10px"><img class="fill" src="assets/images/19-thap-dinh-duong-xua.webp" alt="Tháp dinh dưỡng truyền thống cho người trưởng thành, giai đoạn 2016–2020" /></div>
-        <p class="figcap" style="--d:1">TRUYỀN THỐNG · 2016–2020<span>Viện Dinh dưỡng Quốc gia, Chiến lược 2011–2020</span></p>
+        <div class="imgwhite zoomable" style="--d:0;flex:1"><img class="fill" src="assets/images/19-thap-dinh-duong-xua.webp" alt="Tháp dinh dưỡng truyền thống cho người trưởng thành, giai đoạn 2016–2020" /></div>
+        <p class="figcap" style="--d:1">TRUYỀN THỐNG · 2016–2020<span>Viện Dinh dưỡng Quốc gia, Chiến lược 2011–2020 · <a class="src-link" href="https://dinhduongmevabe.com.vn/danh-cho-can-bo-y-te/tai-lieu-ho-tro-tu-van-dinh-duong/52-thap-dinh-duong-hop-ly-cho-nguoi-truong-thanh-giai-doan-2016-2020" target="_blank" rel="noopener noreferrer">Dinh dưỡng Bà mẹ &amp; Trẻ em</a></span></p>
       </div>
       <div style="display:flex;flex-direction:column;min-height:0">
-        <div class="imgwhite" style="--d:2;flex:1;padding:10px"><img class="fill" src="assets/images/19-thap-dinh-duong-nay.png" alt="Tháp dinh dưỡng hiện nay cho người trưởng thành theo Chiến lược quốc gia 2021–2030" /></div>
-        <p class="figcap" style="--d:3">HIỆN NAY · 2021–2030<span>Quyết định 02/QĐ-TTg, Chiến lược Quốc gia về Dinh dưỡng</span></p>
+        <div class="imgwhite zoomable" style="--d:2;flex:1"><img class="fill" src="assets/images/19-thap-dinh-duong-nay.png" alt="Tháp dinh dưỡng hiện nay cho người trưởng thành theo Chiến lược quốc gia 2021–2030" /></div>
+        <p class="figcap" style="--d:3">HIỆN NAY · 2021–2030<span>QĐ 02/QĐ-TTg · <a class="src-link" href="https://viendinhduongtphcm.org/vi/y-hoc-thuong-thuc/bo-7-thap-dinh-duong-moi-nhat-tu-vien-dinh-duong-quoc-gia.html" target="_blank" rel="noopener noreferrer">Viện NCDD TP.HCM (08/04/2026)</a></span></p>
       </div>
     </div>
   </div>
@@ -203,14 +203,14 @@
 
 <!-- 19 · BA BÀI BÁO MINH CHỨNG -->
 <section class="slide" data-sec="Người 1, Dinh dưỡng" data-title="Ba bài báo minh chứng: muối, rau quả, béo phì">
-  <div class="slide-inner">
-    <div class="s-head" style="margin-bottom:16px"><div>
+  <div class="slide-inner fit22">
+    <div class="s-head" style="margin-bottom:12px"><div>
       <h2 class="title">3 bài báo, <span class="hl g">3 con số</span></h2></div><span class="s-num">22</span></div>
     <div class="newsstack">
-      <figure class="newsfr" style="--d:0"><div class="fr" style="height:308px"><img src="assets/images/22-bao-dai-doan-ket.jpg" alt="Ảnh chụp bài báo Đại Đoàn Kết: người Việt đang ăn muối gần gấp đôi khuyến nghị, trung bình 8,1 gam mỗi ngày" /></div><figcaption>Nguồn: Dương Toàn, Báo Đại Đoàn Kết (05/11/2026) — ăn muối trung bình 8,1 g/ngày (WHO: &lt;5 g/ngày)</figcaption></figure>
+      <figure class="newsfr zoomable" style="--d:0"><div class="fr" style="height:326px"><img src="assets/images/22-bao-dai-doan-ket.jpg" alt="Ảnh chụp bài báo Đại Đoàn Kết: người Việt đang ăn muối gần gấp đôi khuyến nghị, trung bình 8,1 gam mỗi ngày" /></div><figcaption>Nguồn: <a class="src-link" href="https://daidoanket.vn/nguoi-viet-dang-an-muoi-gan-gap-doi-khuyen-nghi.html" target="_blank" rel="noopener noreferrer">Dương Toàn, Báo Đại Đoàn Kết (05/11/2026)</a> — ăn muối trung bình <b>8,1 g/ngày</b> (WHO: &lt;5 g/ngày), <b>26,2%</b> tăng huyết áp</figcaption></figure>
       <div class="newsrow2">
-        <figure class="newsfr" style="--d:1"><div class="fr" style="height:276px"><img src="assets/images/22-bao-vnexpress.jpg" alt="Ảnh chụp bài báo VnExpress: rau quả dồi dào, người Việt vẫn ăn thiếu, hơn 60% ăn thiếu rau quả so với khuyến nghị" /></div><figcaption>Nguồn: Lê Phương, VnExpress (26/06/2026) — hơn 60% ăn thiếu rau quả</figcaption></figure>
-        <figure class="newsfr" style="--d:2"><div class="fr" style="height:276px"><img src="assets/images/22-bao-suc-khoe-doi-song.jpg" alt="Ảnh chụp bài báo Sức khỏe &amp; Đời sống: 20 triệu người Việt đang sống chung với thừa cân, béo phì" /></div><figcaption>Nguồn: Thái Bình, Báo Sức khỏe &amp; Đời sống (06/03/2026) — 20 triệu người thừa cân – béo phì</figcaption></figure>
+        <figure class="newsfr zoomable" style="--d:1"><div class="fr" style="height:284px"><img src="assets/images/22-bao-vnexpress.jpg" alt="Ảnh chụp bài báo VnExpress: rau quả dồi dào, người Việt vẫn ăn thiếu, hơn 60% ăn thiếu rau quả so với khuyến nghị" /></div><figcaption>Nguồn: <a class="src-link" href="https://vnexpress.net/rau-qua-doi-dao-nguoi-viet-van-an-thieu-5090234.html" target="_blank" rel="noopener noreferrer">Lê Phương, VnExpress (26/06/2026)</a> — <b>&gt;60%</b> ăn thiếu rau quả, <b>&gt;30%</b> lười vận động</figcaption></figure>
+        <figure class="newsfr zoomable" style="--d:2"><div class="fr" style="height:284px"><img src="assets/images/22-bao-suc-khoe-doi-song.jpg" alt="Ảnh chụp bài báo Sức khỏe &amp; Đời sống: 20 triệu người Việt đang sống chung với thừa cân, béo phì" /></div><figcaption>Nguồn: <a class="src-link" href="https://suckhoedoisong.vn/20-trieu-nguoi-viet-dang-song-chung-voi-thua-can-beo-phi-nguy-co-doi-dien-nhieu-benh-169260306212041203.htm" target="_blank" rel="noopener noreferrer">Thái Bình, Báo Sức khỏe &amp; Đời sống (06/03/2026)</a> — <b>20 triệu người</b> (≈19,5%) thừa cân – béo phì</figcaption></figure>
       </div>
     </div>
   </div>
@@ -228,9 +228,9 @@
         <div class="pt" style="--d:1"><span class="n g">02</span><div><h3>Hướng tới dinh dưỡng tối ưu</h3><p>Chắt lọc tinh thần khoa học của khuyến nghị mới, xây dựng mô hình phù hợp khẩu vị, văn hóa và điều kiện kinh tế của người Việt.</p></div></div>
         <div class="pt" style="--d:2"><span class="n g">03</span><div><h3>Kiểm soát bệnh không lây nhiễm</h3><p>Kiểm soát các bệnh không lây nhiễm liên quan đến dinh dưỡng, góp phần nâng cao sức khỏe, ăn uống lành mạnh và sống khỏe bền vững.</p></div></div>
       </div>
-      <figure class="newsfr" style="--d:3;flex:none;align-self:center;width:100%">
+      <figure class="newsfr zoomable" style="--d:3;flex:none;align-self:center;width:100%">
         <div class="fr" style="height:430px"><img src="assets/images/23-bao-vtv-thap-dinh-duong.png" alt="Ảnh chụp bài báo Thời báo VTV: Những thay đổi tích cực từ tháp dinh dưỡng năm 2026" /></div>
-        <figcaption style="font-size:18px">Nguồn: Nhã Khanh, Thời báo VTV (08/03/2026) — “Những thay đổi tích cực từ tháp dinh dưỡng năm 2026”</figcaption>
+        <figcaption style="font-size:18px">Nguồn: <a class="src-link" href="https://vtv.vn/nhung-thay-doi-tich-cuc-tu-thap-dinh-duong-nam-2026-100260306093948687.htm" target="_blank" rel="noopener noreferrer">Nhã Khanh, Thời báo VTV (08/03/2026)</a> — “Những thay đổi tích cực từ tháp dinh dưỡng năm 2026”</figcaption>
       </figure>
     </div>
   </div>

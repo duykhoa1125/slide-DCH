@@ -28,7 +28,7 @@
         <div class="pt" style="--d:1"><span class="n">02</span><div><h3>Tan trong chất béo</h3><p>Hòa tan mạnh chất không phân cực (dầu mỡ, nhựa, sơn) → dễ xâm nhập qua hô hấp và thấm trực tiếp qua da.</p></div></div>
         <div class="pt" style="--d:2"><span class="n">03</span><div><h3>Nguồn phát sinh</h3><p>Lọc hóa dầu · nhựa tổng hợp · cao su &amp; lốp xe · sơn, in ấn, thuộc da.</p></div></div>
       </div>
-      <div class="imgbig" style="--d:3"><img class="ph bw" src="assets/images/25-thap-chung-cat.jpg" alt="Tháp chưng cất tại nhà máy lọc hóa dầu" /><span class="cap">Tháp chưng cất tại <b>nhà máy lọc hóa dầu</b>, nguồn phát sinh dung môi</span></div>
+      <div class="imgbig" style="--d:3"><img class="ph bw" src="assets/images/25-thap-chung-cat.jpg" alt="Tháp chưng cất tại nhà máy lọc hóa dầu" /><span class="cap">Tháp chưng cất tại <b>nhà máy lọc hóa dầu</b>, nguồn phát sinh dung môi (<a class="src-link on-dark" href="https://www.istockphoto.com/vi/b%E1%BB%A9c-%E1%BA%A3nh/distillation-columns-at-a-petrochemical-plant" target="_blank" rel="noopener noreferrer">Hình 3 · iStock</a>)</span></div>
     </div>
   </div>
 </section>
@@ -41,7 +41,10 @@
     <div class="split">
       <div class="imgwhite" style="--d:0">
         <img class="fill" src="assets/images/26-benzen-c6h6.png" alt="Công thức cấu tạo benzen: vòng 6 nguyên tử cacbon, mỗi cacbon gắn 1 hydro" />
-        <span class="chip r" style="font-size:24px;padding:9px 22px">C<sub>6</sub>H<sub>6</sub></span>
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center">
+          <span class="chip r" style="font-size:24px;padding:9px 22px">C<sub>6</sub>H<sub>6</sub></span>
+          <a class="src-link" style="font-size:18px" href="https://byjus.com/chemistry/structure-of-benzene/" target="_blank" rel="noopener noreferrer">Hình 2 · BYJU'S</a>
+        </div>
       </div>
       <div class="pts">
         <div class="pt" style="--d:1"><span class="n">01</span><div><h3>Cấu trúc đặc biệt</h3><p>Hydrocacbon thơm đơn giản nhất: vòng 6 cacbon lục giác đều, liên kết đôi liên hợp bền vững, mỗi C gắn 1 H.</p></div></div>
@@ -99,7 +102,7 @@
         <div class="pt" style="--d:1"><span class="n k">02</span><div><h3>Kiềm mạnh <span class="fx" style="font-size:.72em">NaOH · KOH</span></h3><p>Xút ăn da, tính ăn mòn bazơ cực mạnh.<span class="src">Bột giấy · xà phòng &amp; tẩy rửa · xử lý nước thải</span></p></div></div>
         <div class="pt" style="--d:2"><span class="n y">03</span><div><h3>Bỏng: axit ≠ kiềm</h3><p>Axit <b>đông tụ protein</b> (vết bỏng khô). Kiềm <b>hóa lỏng, xà phòng hóa mô</b> → thấm sâu hơn; bắn vào mắt gây sẹo đục, giảm thị lực vĩnh viễn.</p></div></div>
       </div>
-      <div class="imgbig" style="--d:3"><img class="ph" src="assets/images/29-be-hoa-chat.jpg" alt="Bể hóa chất tẩy gỉ và xử lý bề mặt kim loại trong nhà xưởng" /><span class="cap">Bể tẩy gỉ, <b>sương mù axit</b> nồng độ cao</span></div>
+      <div class="imgbig" style="--d:3"><img class="ph" src="assets/images/29-be-hoa-chat.jpg" alt="Bể hóa chất tẩy gỉ và xử lý bề mặt kim loại trong nhà xưởng" /><span class="cap">Bể tẩy gỉ, <b>sương mù axit</b> nồng độ cao (<a class="src-link on-dark" href="https://www.protank.com/custom-pickling-tanks" target="_blank" rel="noopener noreferrer">Hình 32 · ProTank</a>)</span></div>
     </div>
   </div>
 </section>
@@ -108,7 +111,7 @@
 <section class="slide" data-sec="Người 2, Ngành hóa" data-title="Formaldehyde HCHO">
   <div class="slide-inner">
     <div class="s-head"><div>
-      <h2 class="title">Formaldehyde <span class="fx" style="font-size:.9em">HCHO</span>, khí <span class="hl">hắc nồng</span> quanh ta</h2></div><span class="s-num">30</span></div>
+      <h2 class="title">Formaldehyde <span class="fx" style="font-size:.9em">HCHO</span>, <span style="white-space:nowrap">khí <span class="hl">hắc nồng</span></span></h2></div><span class="s-num">30</span></div>
     <div class="split">
       <div class="txtcol">
         <svg class="mol" width="600" height="263" viewBox="0 0 210 92" style="align-self:center;margin-bottom:30px" aria-label="Công thức cấu tạo formaldehyde: cacbon nối đôi oxy, nối đơn hai hydro">
@@ -122,7 +125,7 @@
         <p style="font-size:30px;line-height:1.45;font-weight:500;text-align:center;max-width:600px;align-self:center">Anđehit đơn giản nhất: khí <b>không màu, mùi hắc nồng</b>, tan mạnh trong nước thành formalin.</p>
       </div>
       <div style="display:flex;flex-direction:column;min-height:0;gap:22px">
-        <div class="imgbig" style="--d:0;flex:1"><img class="ph" src="assets/images/30-van-go-ep.jpg" alt="Xếp chồng ván gỗ ép công nghiệp trong nhà máy" /><span class="cap">Ván ép, <b>nguồn HCHO</b> trong nhà &amp; xưởng mộc</span></div>
+        <div class="imgbig" style="--d:0;flex:1"><img class="ph" src="assets/images/30-van-go-ep.jpg" alt="Xếp chồng ván gỗ ép công nghiệp trong nhà máy" /><span class="cap">Ván ép, <b>nguồn HCHO</b> trong nhà &amp; xưởng mộc (<a class="src-link on-dark" href="https://silamas.com/mdf-plant-particle-board-plant/" target="_blank" rel="noopener noreferrer">Hình 39 · Silamas</a>)</span></div>
         <p style="font-size:30px;line-height:1.45;font-weight:500">Keo UF/PF trong ván MDF, MFC giải phóng khí khi ép nhiệt, cắt xẻ. Dệt nhuộm &amp; nhựa xốp cũng phát thải HCHO khi gia nhiệt.</p>
       </div>
     </div>
@@ -163,7 +166,7 @@
 <section class="slide" data-sec="Người 2, Ngành hóa" data-title="Phòng ngừa ngành hóa: kiểm soát kỹ thuật & thông gió">
   <div class="slide-inner">
     <div class="s-head"><div>
-      <h2 class="title">Phòng ngừa: kiểm soát <span class="hl g">kỹ thuật</span> &amp; thông gió</h2></div><span class="s-num">33</span></div>
+      <h2 class="title" style="font-size:58px">Phòng ngừa: kiểm soát <span class="hl g">kỹ thuật</span> <span style="white-space:nowrap">và thông gió</span></h2></div><span class="s-num">33</span></div>
     <div class="pts" style="flex:1;justify-content:space-evenly">
       <div class="pt" style="--d:0"><span class="n g">01</span><div><h3>Thay thế hóa chất</h3><p>Thay thế hóa chất độc tính cao bằng vật liệu ít nguy hại hơn ngay từ đầu vào sản xuất.</p></div></div>
       <div class="pt" style="--d:1"><span class="n g">02</span><div><h3>Tự động hóa, khép kín dây chuyền</h3><p>Tự động hóa, khép kín dây chuyền chiết rót, pha trộn để công nhân không tiếp xúc trực tiếp hơi độc.</p></div></div>
@@ -179,7 +182,7 @@
     <div class="s-head"><div>
       <h2 class="title" style="font-size:58px">Phòng ngừa: <span class="hl g">bảo hộ cá nhân</span> đúng chuẩn</h2></div><span class="s-num">34</span></div>
     <div class="split">
-      <div class="imgbig" style="--d:0"><img class="ph" src="assets/images/34-bao-ho-hoa-chat.jpg" alt="Công nhân hóa chất mặc đồ bảo hộ, đeo mặt nạ phòng độc và găng tay" /><span class="cap">PPE đúng chuẩn: mặt nạ đúng phin lọc · găng <b>nitrile / butyl</b></span></div>
+      <div class="imgbig" style="--d:0"><img class="ph" src="assets/images/34-bao-ho-hoa-chat.jpg" alt="Công nhân hóa chất mặc đồ bảo hộ, đeo mặt nạ phòng độc và găng tay" /><span class="cap">PPE đúng chuẩn: mặt nạ đúng phin lọc · găng <b>nitrile / butyl</b> (<a class="src-link on-dark" href="https://www.sirsafety.com/safety-gloves-chemical-protective-gloves" target="_blank" rel="noopener noreferrer">Hình 53 · SirSafety</a>)</span></div>
       <div class="pts compact">
         <div class="pt" style="--d:1"><span class="n g">01</span><div><h3>Bảo vệ hô hấp &amp; mắt</h3><p>Kính bảo hộ ôm sát chống văng bắn; mặt nạ phòng độc lắp đúng phin lọc (hơi hữu cơ, khí axit hoặc bụi mịn kim loại nặng).</p></div></div>
         <div class="pt" style="--d:2"><span class="n g">02</span><div><h3>Bảo vệ da &amp; cơ thể</h3><p>Quần áo chống thấm, ủng chịu axit – kiềm, găng tay kháng hóa chất (nitrile, neoprene, butyl).</p></div></div>
@@ -193,7 +196,7 @@
 <section class="slide" data-sec="Người 2, Ngành hóa" data-title="Phòng ngừa ngành hóa: nhãn GHS, ứng cứu & giám sát sức khỏe">
   <div class="slide-inner fit31">
     <div class="s-head"><div>
-      <h2 class="title">Phòng ngừa: GHS, <span class="hl g">ứng cứu</span> &amp; giám sát sức khỏe</h2></div><span class="s-num">35</span></div>
+      <h2 class="title">Phòng ngừa: GHS, <span class="hl g">ứng cứu</span> <span style="white-space:nowrap">và giám sát sức khỏe</span></h2></div><span class="s-num">35</span></div>
     <div class="pts" style="flex:1;justify-content:space-evenly">
       <div class="pt" style="--d:0"><span class="n g">01</span><div><h3>Quản lý nhãn hóa chất chuẩn GHS</h3><p>Đầy đủ phiếu an toàn hóa chất và nhãn cảnh báo chuẩn GHS; cách ly hóa chất tương kỵ (axit mạnh với kiềm mạnh, dung môi dễ cháy). Không ăn uống, hút thuốc trong xưởng; vệ sinh cá nhân, thay đồ bảo hộ sau ca làm việc.</p></div></div>
       <div class="pt" style="--d:1"><span class="n g">02</span><div><h3>Ứng cứu sự cố khẩn cấp</h3><p>Lắp bồn rửa mắt và vòi tắm khẩn cấp trong phạm vi 10 giây di chuyển tại khu vực axit – kiềm. Khi hóa chất bắn vào mắt/da → xối nước sạch liên tục ít nhất 15 phút trước khi chuyển đến cơ sở y tế.</p></div></div>

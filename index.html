@@ -37,12 +37,25 @@
   <button class="edge" id="edgeR" aria-label="Slide tiếp theo"><span>›</span></button>
 
   <button class="corner-btn" id="btnToc" aria-label="Mở mục lục slide" title="Mục lục">☰</button>
+  <button class="corner-btn" id="btnSrc" aria-label="Mở danh mục nguồn trích dẫn" title="Danh mục nguồn">Nguồn</button>
   <button class="corner-btn" id="btnFs" aria-label="Toàn màn hình" title="Toàn màn hình">⛶</button>
 
   <div id="toc" role="dialog" aria-label="Mục lục slide">
     <button id="tocClose">✕ Đóng</button>
     <h2 id="tocTitle">Mục lục · 53 slide</h2>
     <div class="grid" id="tocGrid"></div>
+  </div>
+
+  <div id="srcModal" role="dialog" aria-label="Danh mục nguồn trích dẫn">
+    <button id="srcClose">✕ Đóng</button>
+    <h2>Danh mục nguồn &amp; đối chiếu hình ảnh</h2>
+    <p class="src-intro">Toàn bộ đường dẫn và chú thích dưới đây được giữ nguyên từ 5 tài liệu thành viên đã nộp; các ảnh minh họa không nằm trong tài liệu gốc được ghi rõ trạng thái chưa xác định URL.</p>
+    <div id="srcContent"></div>
+  </div>
+
+  <div id="imgZoom" role="dialog" aria-label="Phóng to hình ảnh">
+    <img id="imgZoomPic" src="" alt="" />
+    <p id="imgZoomCap"></p>
   </div>
 
   <!-- Nội dung từng phần slide (sửa trực tiếp trong slides/, mở/F5 index.html để xem ngay) -->
@@ -53,8 +66,9 @@
   <script defer src="slides/05-moi-truong.js"></script>
   <script defer src="slides/06-ket-luan.js"></script>
 
-  <!-- Doodle vẽ tay & điều khiển trình chiếu -->
+  <!-- Doodle vẽ tay, nguồn & điều khiển trình chiếu -->
   <script defer src="scripts/doodles.js"></script>
+  <script defer src="scripts/sources.js"></script>
   <script defer src="scripts/deck.js"></script>
 </body>
 </html>

@@ -121,7 +121,7 @@
         <div class="lrow" style="--d:3;display:block;padding:13px 2px"><div class="nm">Khói hàn mạch</div><p style="margin-top:6px">Hàn bảng mạch điện tử, linh kiện, dây dẫn → kích ứng đường hô hấp, tổn thương phổi</p></div>
         <div class="lrow" style="--d:4;display:block;padding:13px 2px"><div class="nm">Dung môi hữu cơ</div><p style="margin-top:6px">Vệ sinh linh kiện, tẩy rửa thiết bị điện → đau đầu, chóng mặt, ảnh hưởng thần kinh</p></div>
       </div>
-      <div class="imgbig" style="--d:5"><img class="ph" src="assets/images/42-han-mach-dien-tu.webp" alt="Hàn bảng mạch điện tử bằng hợp kim thiếc-chì" /><span class="cap">Hàn thiếc &amp; bảng mạch điện tử: <b>chì &amp; khói hàn</b> gây kích ứng hô hấp, tổn thương phổi</span></div>
+      <div class="imgbig" style="--d:5"><img class="ph" src="assets/images/42-han-mach-dien-tu.webp" alt="Hàn bảng mạch điện tử bằng hợp kim thiếc-chì" /><span class="cap">Hàn thiếc và bảng mạch điện tử: <b>nguồn phơi nhiễm chì và khói hàn mạch</b>.</span></div>
     </div>
   </div>
 </section>

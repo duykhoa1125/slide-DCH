@@ -2,21 +2,19 @@
 (window.DECK_SLIDES = window.DECK_SLIDES || []).push(/* html */ `
 <!-- 36 · KẾT LUẬN -->
 <section class="slide" data-sec="Nhóm trưởng, Mở đầu · Lý thuyết · Kết luận" data-title="Kết luận: phòng ngừa bắt đầu từ nguồn phát sinh">
-  <div class="slide-inner">
+  <div class="slide-inner fit52">
     <div class="s-head"><div>
-      <h2 class="title">Phòng ngừa bắt đầu từ <span class="hl g">nguồn phát sinh</span></h2></div><span class="s-num">52</span></div>
+      <h2 class="title">Tổng kết: <span class="hl g">phòng ngừa</span> từ nguồn đến bữa ăn</h2></div><span class="s-num">52</span></div>
     <div class="split">
       <div class="box c-ink" style="--d:0;justify-content:center">
-        <span class="kick" style="color:var(--yellow);opacity:1;font-size:23px">Thông điệp mang về</span>
-        <div style="font-family:var(--disp);font-weight:900;font-size:44px;line-height:1.18">“Phòng ngừa độc chất hiệu quả bắt đầu từ môi trường sạch và thực phẩm an toàn.”</div>
-        <p style="font-size:29px;line-height:1.45;font-weight:500;margin-top:14px">Kết hợp: kiểm soát nguồn phát sinh → trang bị bảo hộ → dinh dưỡng hợp lý hỗ trợ cơ thể (không thay thế điều trị y tế hay giảm phơi nhiễm).</p>
+        <span class="kick" style="color:var(--yellow);opacity:1;font-size:23px">Thông điệp toàn bài</span>
+        <div style="font-family:var(--disp);font-weight:900;font-size:43px;line-height:1.18">“Phòng ngừa độc chất hiệu quả bắt đầu từ môi trường sạch và thực phẩm an toàn.”</div>
+        <p style="font-size:28px;line-height:1.42;font-weight:500;margin-top:12px">Ba lớp kết hợp: kiểm soát nguồn phát sinh → bảo hộ phù hợp → dinh dưỡng hợp lý.</p>
       </div>
-      <div style="display:flex;flex-direction:column;min-height:0;gap:26px">
-        <div class="stat" style="--d:1;border-top:2.5px solid var(--line);border-bottom:2.5px solid var(--line);padding:22px 2px">
-          <h3 style="font-family:var(--disp);font-weight:800;font-size:35px;line-height:1.15;margin-bottom:9px">Đối với ngành Môi trường</h3>
-          <p style="font-size:29.5px;line-height:1.44;font-weight:500;margin-top:0;max-width:none">Xử lý chất thải và bảo vệ nguồn nước, không khí, đất chính là những giải pháp nền tảng để bảo vệ sức khỏe cộng đồng trước các độc tố xâm nhập qua hô hấp, ăn uống và tiếp xúc ngoài da.</p>
-        </div>
-        <div class="imgbig" style="--d:2;flex:1"><img class="ph" src="assets/images/52-rau-cu-tuoi.jpg" alt="Rau củ quả tươi nhiều màu sắc, nền tảng của chế độ ăn phòng ngừa độc chất" /><span class="cap">Ăn đa dạng · thực phẩm an toàn · <b>nước sạch</b></span></div>
+      <div class="pts compact">
+        <div class="pt" style="--d:1"><span class="n">01</span><div><h3>Nhận diện nguy cơ ở 4 ngành</h3><p>Độc tố ngành hóa, xây dựng, điện và môi trường có thể đi vào cơ thể qua hô hấp, tiêu hóa, da – niêm mạc và vết thương hở.</p></div></div>
+        <div class="pt" style="--d:2"><span class="n g">02</span><div><h3>Kiểm soát nguồn &amp; trang bị bảo hộ</h3><p>Thay thế chất ít độc, hút khí/bụi tại nguồn, dùng PPE đúng chuẩn, xử lý chất thải và bảo vệ đất, nước, không khí.</p></div></div>
+        <div class="pt" style="--d:3"><span class="n g">03</span><div><h3>Dinh dưỡng hợp lý chỉ mang tính hỗ trợ</h3><p>Ăn đa dạng, đủ vi chất và thực phẩm an toàn giúp duy trì chức năng cơ thể; không thay thế giảm phơi nhiễm hay điều trị ngộ độc.</p></div></div>
       </div>
     </div>
   </div>

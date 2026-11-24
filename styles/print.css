@@ -24,7 +24,8 @@
   }
 
   body::before { display: none !important; }
-  #progress, .edge, .corner-btn, #toc { display: none !important; }
+  #progress, .edge, .corner-btn, #toc, #srcModal, #imgZoom { display: none !important; }
+  .src-link { text-decoration: underline !important; }
   #viewport { position: static !important; display: block !important; overflow: visible !important; }
   #stage { width: auto !important; height: auto !important; transform: none !important; }
 
