@@ -1,0 +1,227 @@
+/* nền chấm đỏ phía sau trôi rất chậm, lặp liền mạch theo đúng 1 ô chấm (34px) */
+@keyframes dotdrift {
+  from { background-position: 0 0, 17px 17px, 0 0, 0 0; }
+  to { background-position: 34px 34px, 51px 51px, 0 0, 0 0; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: .55; }
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0) rotate(-.6deg); }
+  50% { transform: translateY(-6px) rotate(.6deg); }
+}
+
+@keyframes edgehop {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.28); }
+  55% { transform: scale(.93); }
+  100% { transform: scale(1); }
+}
+
+@keyframes fdln {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.slide.active .fd-side {
+  animation: pop .85s cubic-bezier(.22,1,.36,1) both;
+  animation-delay: calc(var(--d, 0) * 55ms + 30ms);
+}
+
+.slide.active .fd-nd {
+  animation: pop .85s cubic-bezier(.22,1,.36,1) both;
+  animation-delay: calc(var(--d, 0) * 70ms + 60ms);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.slide.active .fd-ln {
+  animation: fdln .6s ease both;
+  animation-delay: calc(var(--d, 0) * 70ms + 300ms);
+}
+
+.slide.active .mtr {
+  animation: rowin .75s cubic-bezier(.22,1,.36,1) both;
+  animation-delay: calc(var(--d, 0) * 100ms + 70ms);
+}
+
+.slide.active .memrow {
+  animation: rowin .75s cubic-bezier(.22,1,.36,1) both;
+  animation-delay: calc(var(--d, 0) * 100ms + 70ms);
+}
+
+.slide.active .fit5s .col5-head {
+  animation: pop .85s cubic-bezier(.22,1,.36,1) both;
+}
+
+.slide.active .fit4 .scope-head {
+  animation: pop .85s cubic-bezier(.22,1,.36,1) both;
+}
+
+/* entrance motion */
+.slide.active .pt,
+.slide.active .lrow,
+.slide.active .fstep,
+.slide.active .col,
+.slide.active .mcol,
+.slide.active .imgbig,
+.slide.active .imgwhite,
+.slide.active .illus,
+.slide.active .stat,
+.slide.active .box,
+.slide.active .foot,
+.slide.active .ts-lv,
+.slide.active .fd-step,
+.slide.active .newsfr {
+  animation: pop .85s cubic-bezier(.22,1,.36,1) both;
+  animation-delay: calc(var(--d, 0) * 55ms + 30ms);
+}
+
+@keyframes pop {
+  from { opacity: 0; transform: translateY(30px) scale(.985); }
+  to { opacity: 1; transform: none; }
+}
+
+/* tiêu đề trượt nhẹ từ trái vào khi mở slide */
+.slide.active h2.title,
+.slide.active .bigtitle {
+  animation: tin .95s cubic-bezier(.22,1,.36,1) both;
+}
+
+.slide.active .statement {
+  animation: tin .95s cubic-bezier(.22,1,.36,1) both;
+  animation-delay: calc(var(--d, 0) * 55ms + 30ms);
+}
+
+@keyframes tin {
+  from { opacity: 0; transform: translateX(-56px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ảnh minh họa zoom rất nhẹ 1.0 -> 1.05 rồi dừng khi slide mở */
+.slide.active .imgbig img.ph {
+  animation: kenburns 7s cubic-bezier(.22,1,.36,1) both;
+}
+
+@keyframes kenburns {
+  from { transform: scale(1); }
+  to { transform: scale(1.05); }
+}
+
+/* dải chú thích đen dưới ảnh trượt lên từ dưới khi slide mở */
+.slide.active .imgbig .cap {
+  animation: capup .8s cubic-bezier(.22,1,.36,1) both;
+  animation-delay: .3s;
+}
+
+@keyframes capup {
+  from { transform: translateY(110%); }
+  to { transform: translateY(0); }
+}
+
+/* số thứ tự 01–04 rơi lần lượt từ trên xuống, nối tiếp nhau theo --d của hàng chứa nó */
+.slide.active .pt .n,
+.slide.active .fstep .n,
+.slide.active .col .n,
+.slide.active .fd-step .n {
+  animation: numdrop .75s cubic-bezier(.22,1,.36,1) both;
+  animation-delay: calc(var(--d, 0) * 130ms + 120ms);
+}
+
+@keyframes numdrop {
+  from { opacity: 0; transform: translateY(-32px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* công thức hóa học sáng lên một nhịp vàng khi slide mở để hút mắt, rồi trở lại bình thường */
+.slide.active .fx {
+  animation: fxpulse 1.8s ease-in-out .35s 1 both;
+}
+
+@keyframes fxpulse {
+  0%, 100% { background-color: transparent; text-shadow: none; }
+  35% { background-color: rgba(255,197,49,.5); text-shadow: 0 0 16px rgba(255,197,49,.95); }
+}
+
+/* các hàng trong bảng hiện lần lượt từ trên xuống, nối tiếp nhau rõ hơn nhịp pop chung */
+.slide.active .lrow {
+  animation: rowin .75s cubic-bezier(.22,1,.36,1) both;
+  animation-delay: calc(var(--d, 0) * 100ms + 70ms);
+}
+
+@keyframes rowin {
+  from { opacity: 0; transform: translateX(-26px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* khối highlight sau từ khóa quét nhẹ từ trái sang phải khi slide mở, xong mới nhún bob như cũ;
+   vùng clip nới âm ra ngoài để không cắt mất bóng cứng 6px của khối highlight */
+.slide.active .hl {
+  animation: bob 3.2s ease-in-out infinite, hlsweep .9s cubic-bezier(.22,1,.36,1) .3s both !important;
+}
+
+@keyframes hlsweep {
+  from { clip-path: inset(-14% 100% -26% -6%); }
+  to { clip-path: inset(-14% -26% -26% -6%); }
+}
+
+/* floating deco */
+.floaty {
+  position: absolute;
+  pointer-events: none;
+  animation: floaty 5.5s ease-in-out infinite;
+}
+
+@keyframes floaty {
+  0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+  50% { transform: translateY(-16px) rotate(var(--r, 0deg)); }
+}
+
+/* doodle hóa học vẽ tay: JS rải ngẫu nhiên vào vùng trống của từng slide, không đè nội dung */
+.doodles {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.doodle {
+  position: absolute;
+  pointer-events: none;
+  animation: drift 7s ease-in-out infinite;
+}
+
+.doodle svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter: url(#sketch);
+}
+
+@keyframes drift {
+  0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+  50% { transform: translateY(-7px) rotate(var(--r, 0deg)); }
+}
+
+/* donut */
+.donut { transform: rotate(-90deg); }
+.donut .ring {
+  stroke: var(--coral);
+  stroke-dasharray: 326.7;
+  stroke-dashoffset: 326.7;
+  transition: stroke-dashoffset 1.7s cubic-bezier(.22,1,.36,1) .15s;
+}
+.slide.active .donut .ring { stroke-dashoffset: var(--off, 60); }
+.mol { flex: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .slide.active .hl { animation: none !important; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}

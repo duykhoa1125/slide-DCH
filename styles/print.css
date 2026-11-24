@@ -1,0 +1,109 @@
+/* ---------- PRINT: mỗi slide đúng 1 trang ngang 16:9, xuất PDF không viền thừa, không trang trắng ----------
+   Khổ trang = 297mm × 167.0625mm (297 × 9/16, đúng tỉ lệ 16:9 của khung slide 1600×900).
+   Nội dung 1600×900 được thu đồng đều theo hệ số 297mm/1600px = 0.701575 (ở 96dpi: 297mm = 1122.52px). */
+@page { size: 297mm 167.0625mm; margin: 0; }
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  html, body {
+    width: 297mm;
+    height: auto;
+    overflow: visible;
+    background: #fff !important;
+  }
+
+  body::before { display: none !important; }
+  #progress, .edge, .corner-btn, #toc { display: none !important; }
+  #viewport { position: static; display: block; overflow: visible; }
+  #stage { width: auto; height: auto; transform: none !important; }
+
+  .slide {
+    position: relative;
+    inset: auto;
+    width: 297mm;
+    height: 167.0625mm;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: none;
+    transform: none !important;
+    box-shadow: none;
+    border: 0;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+    page-break-after: always;
+    break-after: page;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    overflow: hidden;
+  }
+
+  .slide:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  .slide-inner {
+    width: 1600px;
+    height: 900px;
+    transform: scale(.701575);
+    transform-origin: top left;
+  }
+
+  .slide-inner::after { display: none; }
+  img { max-width: none; }
+
+  .slide.active .pt,
+  .slide.active .lrow,
+  .slide.active .fstep,
+  .slide.active .col,
+  .slide.active .mcol,
+  .slide.active .imgbig,
+  .slide.active .imgwhite,
+  .slide.active .illus,
+  .slide.active .stat,
+  .slide.active .box,
+  .slide.active .statement,
+  .slide.active .foot,
+  .slide.active h2.title,
+  .slide.active .ts-lv,
+  .slide.active .fd-step,
+  .slide.active .newsfr {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+
+  .slide.active .hl {
+    animation: none !important;
+    clip-path: none !important;
+  }
+
+  .imgbig img.ph {
+    clip-path: none !important;
+    transform: none !important;
+  }
+
+  .imgbig .cap {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  .donut .ring {
+    stroke-dashoffset: var(--off, 60) !important;
+    transition: none !important;
+  }
+
+  .doodle { animation: none !important; }
+  .doodle svg { filter: none; }
+  .doodle svg path,
+  .doodle svg circle,
+  .doodle svg ellipse {
+    stroke-dashoffset: 0 !important;
+  }
+}
