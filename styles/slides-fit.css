@@ -73,6 +73,7 @@
 .fit5s .pt { padding: 8px 2px; gap: 22px; }
 .fit5s .pt:first-child { padding-top: 6px; }
 .fit5s .pt:last-child { padding-bottom: 6px; }
+.fit5s .col5:not(.right) .pt:last-child { border-bottom: 2.5px solid var(--line); padding-bottom: 8px; }
 .fit5s .pt > div { min-width: 0; }
 .fit5s .pt .n { font-size: 36px; min-width: 58px; }
 .fit5s .pt h3 { font-size: 28px; margin-bottom: 3px; }
