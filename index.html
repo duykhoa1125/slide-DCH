@@ -191,13 +191,28 @@ img.bw{filter:grayscale(1) contrast(1.06)}
 .fit6 .tlevels{max-width:710px}
 .fit6 .tlevels p{font-size:25.5px; line-height:1.34; font-weight:500; margin-top:7px}
 .fit6 .tlevels p b{font-weight:700}
-/* slide 5: tách thành 5 dạng tác động riêng — gọn nhịp để 5 mục + dòng kết vẫn vừa 1 màn hình */
-.fit5s .s-head{margin-bottom:20px}
-.fit5s h2.title{margin-top:10px}
-.fit5s .pts.tight .pt{padding:10px 2px}
-.fit5s .pt .n{font-size:40px; min-width:64px}
-.fit5s .pt h3{font-size:29px; margin-bottom:4px}
-.fit5s .pt p{font-size:26.5px; line-height:1.34}
+/* slide 5 (phân loại theo nguồn gốc & dạng tác động): hai cột đều nhau 1fr/1fr —
+   cột trái "Theo nguồn gốc" (3 mục), cột phải 5 dạng tác động, dòng kết ở dưới cùng */
+.slide-inner.fit5s{padding:36px 58px 42px}
+.fit5s .s-head{margin-bottom:16px}
+.fit5s h2.title{font-size:52px; margin-top:6px; max-width:none; white-space:nowrap}
+.fit5s .cols2{display:grid; grid-template-columns:1fr 1fr; gap:52px; flex:1; min-height:0}
+.fit5s .col5{display:flex; flex-direction:column; min-height:0}
+.fit5s .col5 + .col5{border-left:2.5px solid var(--line); padding-left:52px}
+.fit5s .col5-head{font-family:var(--mono); font-weight:700; font-size:17px; letter-spacing:.14em; text-transform:uppercase; display:flex; align-items:center; gap:10px; margin-bottom:6px}
+.fit5s .col5-head i{width:11px; height:11px; border-radius:50%; background:var(--coral-deep); flex:none}
+.fit5s .col5.right .col5-head i{background:var(--yellow); border:2px solid var(--ink); width:13px; height:13px; box-sizing:border-box}
+.slide.active .fit5s .col5-head{animation:pop .85s cubic-bezier(.22,1,.36,1) both}
+.fit5s .col5 .pts{flex:1; justify-content:space-evenly; height:auto}
+.fit5s .pt{padding:8px 2px; gap:22px}
+.fit5s .pt:first-child{padding-top:6px}
+.fit5s .pt:last-child{padding-bottom:6px}
+.fit5s .pt>div{min-width:0}
+.fit5s .pt .n{font-size:36px; min-width:58px}
+.fit5s .pt h3{font-size:28px; margin-bottom:3px}
+.fit5s .pt p{font-size:24px; line-height:1.3}
+.fit5s .pt .cdot{flex:none; width:26px; height:26px; border-radius:50%; border:3px solid var(--ink); margin-top:7px}
+.fit5s .foot{font-size:27px; line-height:1.4}
 /* slide 17 (nguồn thực phẩm dễ tìm): 4 mục + ảnh chợ + dòng kết — gọn nhịp để mục 04 không đè dòng kết */
 .slide-inner.fit17{padding:40px 58px 46px}
 .fit17 .s-head{margin-bottom:16px}
@@ -241,6 +256,25 @@ img.bw{filter:grayscale(1) contrast(1.06)}
 .fit23 .pt h3{font-size:30px; margin-bottom:5px}
 .fit23 .pt p{font-size:25.5px; line-height:1.34}
 .fit23 .newsfr .fr{height:372px!important}
+/* slide 4 (mục tiêu & phạm vi): hai cột đều nhau 1fr/1fr — cột phạm vi 3 mục giãn đều lấp cùng chiều cao với 4 mục tiêu */
+.slide-inner.fit4{padding:40px 58px 48px}
+.fit4 .s-head{margin-bottom:14px}
+.fit4 h2.title{font-size:57px; margin-top:10px}
+.fit4 .scope2{display:grid; grid-template-columns:1fr 1fr; gap:52px; flex:1; min-height:0}
+.fit4 .scope-col{display:flex; flex-direction:column; min-height:0}
+.fit4 .scope-col + .scope-col{border-left:2.5px solid var(--line); padding-left:52px}
+.fit4 .scope-head{font-family:var(--mono); font-weight:700; font-size:17px; letter-spacing:.14em; text-transform:uppercase; display:flex; align-items:center; gap:10px; margin-bottom:6px}
+.fit4 .scope-head i{width:11px; height:11px; border-radius:50%; background:var(--coral-deep); flex:none}
+.fit4 .scope-col.phamvi .scope-head i{background:var(--yellow); border:2px solid var(--ink); width:13px; height:13px; box-sizing:border-box}
+.fit4 .scope-col .pts{flex:1; justify-content:space-evenly; height:auto}
+.fit4 .pt{padding:13px 2px; gap:22px}
+.fit4 .pt:first-child{padding-top:8px}
+.fit4 .pt:last-child{padding-bottom:8px}
+.fit4 .pt>div{min-width:0}
+.fit4 .pt .n{font-size:40px; min-width:62px}
+.fit4 .pt h3{font-size:30px; margin-bottom:5px}
+.fit4 .pt p{font-size:26px; line-height:1.36}
+.slide.active .fit4 .scope-head{animation:pop .85s cubic-bezier(.22,1,.36,1) both}
 .figcap{font-family:var(--disp); font-weight:800; font-size:27px; text-align:center; margin-top:16px; line-height:1.3}
 .figcap span{display:block; font-family:var(--body); font-weight:500; font-size:26px; opacity:.7; margin-top:4px}
 /* the single accent box, used sparingly */
@@ -493,16 +527,28 @@ sub,sup{font-size:.6em; line-height:0}
 
 <!-- 3 · MỤC TIÊU & PHẠM VI -->
 <section class="slide" data-sec="Nhóm trưởng, Mở đầu · Lý thuyết · Kết luận" data-title="Mục tiêu & phạm vi nghiên cứu">
-  <div class="slide-inner">
+  <div class="slide-inner fit4">
     <div class="s-head"><div>
       <h2 class="title">Mục tiêu &amp; <span class="hl y">phạm vi</span></h2></div><span class="s-num">04</span></div>
-    <div class="pts tight" style="flex:1">
-      <div class="pt" style="--d:0"><span class="n">01</span><div><h3>Hiểu bản chất</h3><p>Nắm khái niệm, phân loại và đường xâm nhập của độc tố.</p></div></div>
-      <div class="pt" style="--d:1"><span class="n">02</span><div><h3>Nhận diện</h3><p>Chỉ mặt các độc tố thường gặp trong 4 ngành nghề.</p></div></div>
-      <div class="pt" style="--d:2"><span class="n">03</span><div><h3>Làm rõ dinh dưỡng</h3><p>Vai trò của ăn uống + so sánh tháp dinh dưỡng xưa và nay.</p></div></div>
-      <div class="pt" style="--d:3"><span class="n">04</span><div><h3>Đề xuất phòng ngừa</h3><p>Biện pháp cụ thể cho từng ngành, từng nhóm độc tố.</p></div></div>
+    <div class="scope2">
+      <div class="scope-col">
+        <p class="scope-head"><i></i>Mục tiêu</p>
+        <div class="pts">
+          <div class="pt" style="--d:0"><span class="n">01</span><div><h3>Hiểu bản chất</h3><p>Nắm khái niệm, phân loại và đường xâm nhập của độc tố.</p></div></div>
+          <div class="pt" style="--d:1"><span class="n">02</span><div><h3>Nhận diện</h3><p>Chỉ mặt các độc tố thường gặp trong 4 ngành nghề.</p></div></div>
+          <div class="pt" style="--d:2"><span class="n">03</span><div><h3>Làm rõ dinh dưỡng</h3><p>Vai trò của ăn uống + so sánh tháp dinh dưỡng xưa và nay.</p></div></div>
+          <div class="pt" style="--d:3"><span class="n">04</span><div><h3>Đề xuất phòng ngừa</h3><p>Biện pháp cụ thể cho từng ngành, từng nhóm độc tố.</p></div></div>
+        </div>
+      </div>
+      <div class="scope-col phamvi">
+        <p class="scope-head"><i></i>Phạm vi</p>
+        <div class="pts">
+          <div class="pt" style="--d:4"><span class="n y">01</span><div><h3>Nội dung</h3><p>Độc tố trong ngành hóa, xây dựng, điện, môi trường và vai trò dinh dưỡng.</p></div></div>
+          <div class="pt" style="--d:5"><span class="n y">02</span><div><h3>Đối tượng</h3><p>Người lao động và cộng đồng xung quanh.</p></div></div>
+          <div class="pt" style="--d:6"><span class="n y">03</span><div><h3>Giới hạn</h3><p>Tổng quan lý thuyết, không đi sâu vào điều trị lâm sàng.</p></div></div>
+        </div>
+      </div>
     </div>
-    <p class="foot" style="--d:4"><span class="bigword">Phạm vi:</span> người lao động &amp; cộng đồng xung quanh · Tổng quan lý thuyết, không đi sâu vào điều trị lâm sàng.</p>
   </div>
 </section>
 
@@ -522,27 +568,39 @@ sub,sup{font-size:.6em; line-height:0}
 </section>
 
 <!-- 5 · PHÂN LOẠI 1 -->
-<section class="slide" data-sec="Nhóm trưởng, Mở đầu · Lý thuyết · Kết luận" data-title="Phân loại: nguồn gốc & dạng tác động">
+<section class="slide" data-sec="Nhóm trưởng, Mở đầu · Lý thuyết · Kết luận" data-title="Phân loại theo nguồn gốc và dạng tác động">
   <div class="slide-inner fit5s">
     <div class="s-head"><div>
-      <h2 class="title">Theo nguồn gốc &amp; <span class="hl">dạng tác động</span></h2>
-      <p class="sub">Nguồn gốc: <b>tự nhiên</b> · <b>hóa học</b> (kim loại nặng, dung môi, thuốc trừ sâu) · <b>sinh học</b> (nọc độc rắn, ngoại độc tố và nội độc tố vi khuẩn).</p></div><span class="s-num">06</span></div>
-    <div class="pts tight" style="flex:1">
-      <div class="pt" style="--d:0"><span class="n">01</span><div><h3>Hóa sinh</h3><p>Thay đổi phản ứng hóa sinh, enzyme và nội tiết trong cơ thể.</p></div></div>
-      <div class="pt" style="--d:1"><span class="n">02</span><div><h3>Dinh dưỡng</h3><p>Ảnh hưởng khẩu phần và hấp thu: ăn nhiều cá biển lớn dễ tích lũy thủy ngân; uống trà sau ăn giảm hấp thu dưỡng chất.</p></div></div>
-      <div class="pt" style="--d:2"><span class="n">03</span><div><h3>Gây ung thư · đột biến</h3><p>Tổn thương DNA, gen, benzen gây ung thư máu, tia UV gây ung thư da.</p></div></div>
-      <div class="pt" style="--d:3"><span class="n">04</span><div><h3>Hành vi</h3><p>Tác động lên thần kinh, thường gây nghiện, điển hình là caffeine.</p></div></div>
-      <div class="pt" style="--d:4"><span class="n">05</span><div><h3>Cơ quan</h3><p>Gây hại một cơ quan cụ thể: hơi hóa chất tẩy rửa → kích ứng hô hấp.</p></div></div>
+      <h2 class="title">Phân loại theo nguồn gốc và <span class="hl">dạng tác động</span></h2></div><span class="s-num">06</span></div>
+    <div class="cols2">
+      <div class="col5">
+        <p class="col5-head"><i></i>Theo nguồn gốc</p>
+        <div class="pts">
+          <div class="pt" style="--d:0"><span class="cdot" style="background:var(--green)"></span><div><h3>Tự nhiên</h3></div></div>
+          <div class="pt" style="--d:1"><span class="cdot" style="background:var(--coral)"></span><div><h3>Hóa học</h3><p>Kim loại nặng, dung môi, thuốc trừ sâu.</p></div></div>
+          <div class="pt" style="--d:2"><span class="cdot" style="background:var(--yellow)"></span><div><h3>Sinh học</h3><p>Nọc độc rắn, ngoại độc tố và nội độc tố vi khuẩn.</p></div></div>
+        </div>
+      </div>
+      <div class="col5 right">
+        <p class="col5-head"><i></i>Theo dạng tác động</p>
+        <div class="pts">
+          <div class="pt" style="--d:0"><span class="n">01</span><div><h3>Hóa sinh</h3><p>Thay đổi phản ứng hóa sinh, enzyme và nội tiết trong cơ thể.</p></div></div>
+          <div class="pt" style="--d:1"><span class="n">02</span><div><h3>Dinh dưỡng</h3><p>Ảnh hưởng khẩu phần và hấp thu: ăn nhiều cá biển lớn dễ tích lũy thủy ngân; uống trà sau ăn giảm hấp thu dưỡng chất.</p></div></div>
+          <div class="pt" style="--d:2"><span class="n">03</span><div><h3>Gây ung thư · đột biến</h3><p>Tổn thương DNA, gen, benzen gây ung thư máu, tia UV gây ung thư da.</p></div></div>
+          <div class="pt" style="--d:3"><span class="n">04</span><div><h3>Hành vi</h3><p>Tác động lên thần kinh, thường gây nghiện, điển hình là caffeine.</p></div></div>
+          <div class="pt" style="--d:4"><span class="n">05</span><div><h3>Cơ quan</h3><p>Gây hại một cơ quan cụ thể: hơi hóa chất tẩy rửa → kích ứng hô hấp.</p></div></div>
+        </div>
+      </div>
     </div>
     <p class="foot" style="--d:5;margin-top:12px;padding-top:14px"><span class="bigword">Một chất, nhiều mặt:</span> cùng một độc tố có thể thuộc nhiều nhóm tác động cùng lúc.</p>
   </div>
 </section>
 
 <!-- 6 · PHÂN LOẠI 2 : MỨC ĐỘ & THỜI GIAN -->
-<section class="slide" data-sec="Nhóm trưởng, Mở đầu · Lý thuyết · Kết luận" data-title="Phân loại (2): mức độ & thời gian">
+<section class="slide" data-sec="Nhóm trưởng, Mở đầu · Lý thuyết · Kết luận" data-title="Phân loại theo mức độ và thời gian">
   <div class="slide-inner fit6">
     <div class="s-head"><div>
-      <h2 class="title">Phân loại (2): mức độ &amp; thời gian</h2></div><span class="s-num">07</span></div>
+      <h2 class="title">Phân loại theo mức độ và thời gian</h2></div><span class="s-num">07</span></div>
     <div class="split">
       <div class="txtcol" style="gap:30px">
         <div class="stat" style="--d:0"><div class="num" style="font-size:92px">LD<sub>50</sub></div>
