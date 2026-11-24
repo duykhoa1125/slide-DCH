@@ -37,12 +37,14 @@
   <button class="edge" id="edgeR" aria-label="Slide tiếp theo"><span>›</span></button>
 
   <button class="corner-btn" id="btnToc" aria-label="Mở mục lục slide" title="Mục lục">☰</button>
-  <button class="corner-btn" id="btnSrc" aria-label="Mở danh mục nguồn trích dẫn" title="Danh mục nguồn">Nguồn</button>
   <button class="corner-btn" id="btnFs" aria-label="Toàn màn hình" title="Toàn màn hình">⛶</button>
 
   <div id="toc" role="dialog" aria-label="Mục lục slide">
     <button id="tocClose">✕ Đóng</button>
-    <h2 id="tocTitle">Mục lục · 53 slide</h2>
+    <div class="toc-top">
+      <h2 id="tocTitle">Mục lục · 53 slide</h2>
+      <button id="btnSrc" type="button" aria-label="Mở danh mục nguồn trích dẫn">Nguồn tài liệu</button>
+    </div>
     <div class="grid" id="tocGrid"></div>
   </div>
 

@@ -271,7 +271,6 @@ h2.title .hl.y { background: var(--yellow); color: var(--ink); }
 }
 
 #btnToc { left: 18px; }
-#btnSrc { left: 80px; font-size: 16px; font-family: var(--mono); font-weight: 700; width: auto; padding: 0 16px; border-radius: 999px; }
 #btnFs { right: 18px; }
 
 /* ---------- Source links & zoomable visuals ---------- */
@@ -376,14 +375,43 @@ h2.title .hl.y { background: var(--yellow); color: var(--ink); }
 
 #toc.open { display: block; }
 
+#toc .toc-top {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+  padding-right: 170px;
+}
+
 #toc h2 {
   color: var(--cream);
   font-family: var(--disp);
   font-weight: 900;
   font-size: 40px;
-  margin-bottom: 28px;
-  padding-right: 230px;
+  margin-bottom: 0;
+  padding-right: 0;
   line-height: 1.15;
+}
+
+#toc .toc-top #btnSrc {
+  background: var(--yellow);
+  color: var(--ink);
+  border: 2.5px solid var(--cream);
+  border-radius: 999px;
+  font-family: var(--disp);
+  font-weight: 800;
+  font-size: 17px;
+  letter-spacing: .01em;
+  padding: 10px 20px;
+  min-height: 0;
+  box-shadow: 0 4px 14px rgba(0,0,0,.35);
+  cursor: pointer;
+}
+
+#toc .toc-top #btnSrc:hover {
+  background: #ffd45c;
+  transform: translateY(-1px);
 }
 
 #toc .grid {

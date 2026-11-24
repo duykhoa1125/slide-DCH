@@ -102,14 +102,14 @@
       (imgZoom && imgZoom.classList.contains('open'));
   }
 
-  function closeAllOverlays() {
+  function closeTopOverlay() {
+    if (imgZoom && imgZoom.classList.contains('open')) { imgZoom.classList.remove('open'); return; }
+    if (srcModal && srcModal.classList.contains('open')) { srcModal.classList.remove('open'); return; }
     toc.classList.remove('open');
-    if (srcModal) srcModal.classList.remove('open');
-    if (imgZoom) imgZoom.classList.remove('open');
   }
 
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') { closeAllOverlays(); return; }
+    if (e.key === 'Escape') { closeTopOverlay(); return; }
     if (anyOverlayOpen()) return;
     if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
       e.preventDefault();
