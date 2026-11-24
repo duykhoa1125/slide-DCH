@@ -50,12 +50,12 @@
     <div class="split">
       <div class="txtcol">
         <div class="statement" style="--d:0">Độc tố ở<br/>quanh ta<br/><span class="hl">mỗi ngày</span></div>
-        <p style="font-size:30px;line-height:1.45;font-weight:500;margin-top:26px;max-width:560px">Trong thực phẩm, nước uống, không khí, và ngay tại nơi làm việc. Không ai đứng ngoài vòng phơi nhiễm.</p>
+        <p style="font-size:30px;line-height:1.45;font-weight:500;margin-top:26px;max-width:560px">Độc tố hiện diện hằng ngày trong thực phẩm, nước, không khí và môi trường lao động.</p>
       </div>
       <div class="pts">
-        <div class="pt" style="--d:1"><span class="n">01</span><div><h3>Bốn ngành, hai mặt</h3><p>Hóa, xây dựng, điện, môi trường vừa thúc đẩy kinh tế, vừa phát sinh nguy cơ nhiễm độc.</p></div></div>
-        <div class="pt" style="--d:2"><span class="n">02</span><div><h3>Phòng ngừa là vàng</h3><p>Phòng ngừa chủ động luôn hiệu quả hơn xử lý hậu quả.</p></div></div>
-        <div class="pt" style="--d:3"><span class="n g">03</span><div><h3>Dinh dưỡng là lá chắn</h3><p>Ăn uống hợp lý giúp giảm tác hại và tăng đào thải độc tố, nhưng không thay thế điều trị y tế.</p></div></div>
+        <div class="pt" style="--d:1"><span class="n">01</span><div><h3>Bốn ngành trọng tâm</h3><p>Các ngành hóa, xây dựng, điện, môi trường vừa thúc đẩy kinh tế vừa phát sinh nguy cơ nhiễm độc (ô nhiễm, ung thư, bệnh hô hấp).</p></div></div>
+        <div class="pt" style="--d:2"><span class="n">02</span><div><h3>Phòng ngừa chủ động</h3><p>Phòng ngừa chủ động hiệu quả hơn xử lý hậu quả.</p></div></div>
+        <div class="pt" style="--d:3"><span class="n g">03</span><div><h3>Vai trò dinh dưỡng</h3><p>Dinh dưỡng hợp lý hỗ trợ cơ thể giảm tác hại của chất độc và tăng đào thải độc tố, nhưng không thay thế điều trị y tế.</p></div></div>
       </div>
     </div>
   </div>
@@ -73,7 +73,7 @@
           <div class="pt" style="--d:0"><span class="n">01</span><div><h3>Hiểu bản chất</h3><p>Nắm khái niệm, phân loại và đường xâm nhập của độc tố.</p></div></div>
           <div class="pt" style="--d:1"><span class="n">02</span><div><h3>Nhận diện</h3><p>Chỉ mặt các độc tố thường gặp trong 4 ngành nghề.</p></div></div>
           <div class="pt" style="--d:2"><span class="n">03</span><div><h3>Làm rõ dinh dưỡng</h3><p>Vai trò của ăn uống + so sánh tháp dinh dưỡng xưa và nay.</p></div></div>
-          <div class="pt" style="--d:3"><span class="n">04</span><div><h3>Đề xuất phòng ngừa</h3><p>Biện pháp cụ thể cho từng ngành, từng nhóm độc tố.</p></div></div>
+          <div class="pt" style="--d:3"><span class="n">04</span><div><h3>Đề xuất phòng ngừa</h3><p>Đề xuất biện pháp phòng ngừa.</p></div></div>
         </div>
       </div>
       <div class="scope-col phamvi">
@@ -97,9 +97,9 @@
       <div class="pt" style="--d:0"><span class="n">01</span><div><h3>Độc chất học</h3><p>Ngành khoa học nghiên cứu tính chất và tác động của chất độc (tự nhiên, hóa học, sinh học) lên cơ thể sống và môi trường, cùng cách chẩn đoán, phòng ngừa, điều trị.</p></div></div>
       <div class="pt" style="--d:1"><span class="n">02</span><div><h3>Chất độc</h3><p>Chất khi vào cơ thể với lượng nhỏ trong điều kiện nhất định gây hại: từ nhẹ (đau đầu, buồn nôn) đến nặng (co giật, sốt cao), có thể tử vong.</p></div></div>
       <div class="pt" style="--d:2"><span class="n">03</span><div><h3>Ngộ độc</h3><p>Sự rối loạn của cơ thể dưới tác dụng của chất độc.</p></div></div>
-      <div class="pt" style="--d:3"><span class="n">04</span><div><h3>Phơi nhiễm</h3><p>Cơ thể tiếp xúc với chất độc, bước đầu tiên của mọi hành trình nhiễm độc.</p></div></div>
+      <div class="pt" style="--d:3"><span class="n">04</span><div><h3>Phơi nhiễm</h3><p>Cơ thể tiếp xúc với chất độc.</p></div></div>
     </div>
-    <p class="foot" style="--d:4"><span class="bigword">Đường đi + liều lượng</span> quyết định mức độ nguy hiểm.</p>
+    <p class="foot" style="--d:4"><span class="bigword">Đường đi và liều lượng</span> quyết định mức độ nguy hiểm của chất độc.</p>
   </div>
 </section>
 
@@ -121,14 +121,13 @@
         <p class="col5-head"><i></i>Theo dạng tác động</p>
         <div class="pts">
           <div class="pt" style="--d:0"><span class="n">01</span><div><h3>Hóa sinh</h3><p>Thay đổi phản ứng hóa sinh, enzyme và nội tiết trong cơ thể.</p></div></div>
-          <div class="pt" style="--d:1"><span class="n">02</span><div><h3>Dinh dưỡng</h3><p>Ảnh hưởng khẩu phần và hấp thu: ăn nhiều cá biển lớn dễ tích lũy thủy ngân; uống trà sau ăn giảm hấp thu dưỡng chất.</p></div></div>
-          <div class="pt" style="--d:2"><span class="n">03</span><div><h3>Gây ung thư · đột biến</h3><p>Tổn thương DNA, gen, benzen gây ung thư máu, tia UV gây ung thư da.</p></div></div>
-          <div class="pt" style="--d:3"><span class="n">04</span><div><h3>Hành vi</h3><p>Tác động lên thần kinh, thường gây nghiện, điển hình là caffeine.</p></div></div>
-          <div class="pt" style="--d:4"><span class="n">05</span><div><h3>Cơ quan</h3><p>Gây hại một cơ quan cụ thể: hơi hóa chất tẩy rửa → kích ứng hô hấp.</p></div></div>
+          <div class="pt" style="--d:1"><span class="n">02</span><div><h3>Dinh dưỡng</h3><p>Ảnh hưởng khẩu phần và hấp thu (ăn nhiều cá biển lớn → nguy cơ tích lũy thủy ngân; uống trà sau ăn giảm hấp thu dưỡng chất).</p></div></div>
+          <div class="pt" style="--d:2"><span class="n">03</span><div><h3>Gây ung thư · đột biến</h3><p>Tổn thương DNA, gen (benzen → ung thư máu; tia UV → ung thư da).</p></div></div>
+          <div class="pt" style="--d:3"><span class="n">04</span><div><h3>Hành vi</h3><p>Tác động thần kinh, thường gây nghiện (caffeine).</p></div></div>
+          <div class="pt" style="--d:4"><span class="n">05</span><div><h3>Cơ quan</h3><p>Gây hại cơ quan cụ thể (hơi hóa chất tẩy rửa → kích ứng hô hấp).</p></div></div>
         </div>
       </div>
     </div>
-    <p class="foot" style="--d:5;margin-top:12px;padding-top:14px"><span class="bigword">Một chất, nhiều mặt:</span> cùng một độc tố có thể thuộc nhiều nhóm tác động cùng lúc.</p>
   </div>
 </section>
 
@@ -146,7 +145,7 @@
         <div style="--d:2">
           <h3 style="font-family:var(--disp);font-weight:800;font-size:30px;margin-bottom:4px">Theo thời gian nhiễm độc</h3>
           <div class="tlevels">
-            <p><b>Siêu cấp tính:</b> vài giây, như kali cyanide KCN.</p>
+            <p><b>Siêu cấp tính:</b> trong tích tắc, giây (kali cyanide KCN).</p>
             <p><b>Cấp tính:</b> xảy ra trong vòng 24h, là triệu chứng lâm sàng (đau bụng do ăn thức ăn không đảm bảo vệ sinh).</p>
             <p><b>Bán cấp tính:</b> vài ngày đến vài tuần.</p>
             <p><b>Mạn tính:</b> vài tháng đến vài năm, do tích lũy kim loại kiềm thổ ở xương.</p>
@@ -176,11 +175,11 @@
     <div class="s-head"><div>
       <h2 class="title">Chất độc vào cơ thể <span class="hl g">bằng đường nào?</span></h2></div><span class="s-num">08</span></div>
     <div class="cols3">
-      <div class="col" style="--d:0"><div class="n g">01</div><h3>Hô hấp, chủ yếu</h3><p>Khí, hơi, bụi vào phổi qua phế nang rồi thẳng vào máu.<span class="src">CO · SO₂ · hơi benzen, toluen · bụi chì · bụi mịn PM2.5</span></p></div>
+      <div class="col" style="--d:0"><div class="n g">01</div><h3>Hô hấp, chủ yếu</h3><p>Khí, hơi, bụi vào phổi qua phế nang rồi vào máu.<span class="src">CO · SO₂ · hơi benzen, toluen · bụi chì · bụi mịn PM2.5</span></p></div>
       <div class="col" style="--d:1"><div class="n">02</div><h3>Tiêu hóa, chủ yếu</h3><p>Thức ăn, nước uống nhiễm độc; hấp thu ở ruột non vào máu.<span class="src">Kim loại nặng · thuốc trừ sâu trên rau củ · phụ gia</span></p></div>
-      <div class="col" style="--d:2"><div class="n y">03</div><h3>Da &amp; niêm mạc</h3><p>Niêm mạc ở mắt, mũi, miệng, niêm mạc tai. Chất tan trong chất béo thấm qua da; chất phân cực kích ứng tại chỗ.<span class="src">Dung môi hữu cơ · thuốc trừ sâu</span></p></div>
+      <div class="col" style="--d:2"><div class="n y">03</div><h3>Da &amp; niêm mạc</h3><p>Mắt, mũi, miệng, niêm mạc tai. Chất tan trong lipid thấm qua da; chất phân cực thường chỉ gây kích ứng tại chỗ.<span class="src">Dung môi hữu cơ · thuốc trừ sâu</span></p></div>
     </div>
-    <p class="foot" style="--d:3"><span class="bigword">Đường khác:</span> tiêm · vết cắn · vết thương hở, xâm nhập chủ động (ăn uống, tiêm) hoặc bị động (hít khí độc, thấm qua da).</p>
+    <p class="foot" style="--d:3"><span class="bigword">Đường khác:</span> tiêm · vết cắn động vật · vết thương hở; xâm nhập chủ động (ăn uống, tiêm) hoặc bị động (hít khí độc, thấm qua da).</p>
   </div>
 </section>
 
@@ -190,7 +189,10 @@
     <div class="s-head"><div>
       <h2 class="title">Đường đi của <span class="hl">chất độc</span> trong cơ thể</h2></div><span class="s-num">09</span></div>
     <div class="fd-wrap">
-      <p class="fd-side" style="--d:5">Chuyển hóa phụ thuộc gen, chủng tộc, giới tính, tuổi, bệnh lý, và <b>chế độ dinh dưỡng</b>: yếu tố <span class="bigword">có thể can thiệp được</span>.</p>
+      <div class="fd-side" style="--d:5;width:236px">
+        <p><b>Đào thải</b> qua thận (nước tiểu), gan–mật (phân), phổi, mồ hôi.</p>
+        <p style="margin-top:14px;padding-top:14px;border-top:2px solid var(--line)"><b>Chuyển hóa</b> phụ thuộc gen và chủng tộc, giới tính, tuổi, chế độ dinh dưỡng, bệnh lý. <b>Dinh dưỡng</b> là yếu tố <span class="bigword">có thể can thiệp</span>.</p>
+      </div>
       <div class="flowdiag">
       <div class="fd-net" role="img" aria-label="Sơ đồ mạng: phơi nhiễm dẫn đến đi vào cơ thể rồi hấp thu và phân bố. Hấp thu và phân bố qua lại hai chiều với chuyển hóa và tích lũy, đồng thời dẫn đến gây độc và bài tiết. Chuyển hóa dẫn đến gây độc, tích lũy và bài tiết. Tích lũy dẫn đến bài tiết. Các đường đi vào cơ thể: tiêu hóa, hô hấp, vết thương, niêm mạc, tai, da.">
       <svg viewBox="0 0 1480 640" aria-hidden="true">

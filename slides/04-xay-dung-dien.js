@@ -66,13 +66,13 @@
       <h2 class="title">Dung môi, khí độc &amp; <span class="hl y">khói hàn</span></h2></div><span class="s-num">39</span></div>
     <div class="split">
       <div class="lrows tight fit5" style="justify-content:space-evenly">
-        <div class="lrow" style="--d:0;display:block;padding:9px 2px"><div class="nm">Toluen · Xylen <span class="fx">C<sub>8</sub>H<sub>10</sub></span></div><p style="margin-top:5px">Sơn, keo, chất pha sơn → đau đầu, chóng mặt, ức chế thần kinh trung ương</p></div>
+        <div class="lrow" style="--d:0;display:block;padding:9px 2px"><div class="nm">Toluen (<span class="fx">C<sub>7</sub>H<sub>8</sub></span>) · Xylen (<span class="fx">C<sub>8</sub>H<sub>10</sub></span>)</div><p style="margin-top:5px">Sơn, keo, chất pha sơn → đau đầu, chóng mặt, ức chế thần kinh trung ương</p></div>
         <div class="lrow" style="--d:1;display:block;padding:9px 2px"><div class="nm">Benzen <span class="fx">C<sub>6</sub>H<sub>6</sub></span></div><p style="margin-top:5px">Sản phẩm dầu mỏ, dung môi → suy tủy xương, tăng nguy cơ bệnh bạch cầu</p></div>
         <div class="lrow" style="--d:2;display:block;padding:9px 2px"><div class="nm">Khí CO</div><p style="margin-top:5px">Động cơ máy móc, máy phát điện → thiếu oxy mô, ngộ độc cấp, nguy cơ tử vong</p></div>
         <div class="lrow" style="--d:3;display:block;padding:9px 2px"><div class="nm">Khí H<sub>2</sub>S</div><p style="margin-top:5px">Cống rãnh, hố ga, không gian kín → gây ngạt, tổn thương thần kinh, tử vong nhanh</p></div>
         <div class="lrow" style="--d:4;display:block;padding:9px 2px"><div class="nm">Khói hàn</div><p style="margin-top:5px">Hàn kim loại, hàn kết cấu thép → sốt khói kim loại, tổn thương phổi</p></div>
       </div>
-      <div class="imgbig" style="--d:5"><img class="ph" src="assets/images/39-tho-han-xay-dung.webp" alt="Thợ hàn đang mài kim loại với tia lửa bắn ra" /><span class="cap">Khói hàn chứa hạt kim loại <b>siêu mịn</b></span></div>
+      <div class="imgbig" style="--d:5"><img class="ph" src="assets/images/39-tho-han-xay-dung.webp" alt="Thợ hàn đang hàn kim loại với tia lửa bắn ra" /><span class="cap">Hàn kim loại, kết cấu thép: khói hàn gây <b>sốt khói kim loại, tổn thương phổi</b></span></div>
     </div>
   </div>
 </section>
@@ -121,7 +121,7 @@
         <div class="lrow" style="--d:3;display:block;padding:13px 2px"><div class="nm">Khói hàn mạch</div><p style="margin-top:6px">Hàn bảng mạch điện tử, linh kiện, dây dẫn → kích ứng đường hô hấp, tổn thương phổi</p></div>
         <div class="lrow" style="--d:4;display:block;padding:13px 2px"><div class="nm">Dung môi hữu cơ</div><p style="margin-top:6px">Vệ sinh linh kiện, tẩy rửa thiết bị điện → đau đầu, chóng mặt, ảnh hưởng thần kinh</p></div>
       </div>
-      <div class="imgbig" style="--d:5"><img class="ph" src="assets/images/42-han-mach-dien-tu.webp" alt="Hàn bảng mạch điện tử, khói hàn mang hạt oxit chì siêu mịn" /><span class="cap">Hàn mạch thiếc-chì: khói mang <b>hạt oxit chì</b> vào phổi</span></div>
+      <div class="imgbig" style="--d:5"><img class="ph" src="assets/images/42-han-mach-dien-tu.webp" alt="Hàn bảng mạch điện tử bằng hợp kim thiếc-chì" /><span class="cap">Hàn thiếc &amp; bảng mạch điện tử: <b>chì &amp; khói hàn</b> gây kích ứng hô hấp, tổn thương phổi</span></div>
     </div>
   </div>
 </section>

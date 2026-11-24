@@ -9,12 +9,12 @@
       <div class="box c-ink" style="--d:0;justify-content:center">
         <span class="kick" style="color:var(--yellow);opacity:1;font-size:23px">Thông điệp mang về</span>
         <div style="font-family:var(--disp);font-weight:900;font-size:44px;line-height:1.18">“Phòng ngừa độc chất hiệu quả bắt đầu từ môi trường sạch và thực phẩm an toàn.”</div>
-        <p style="font-size:30px;line-height:1.45;font-weight:500;margin-top:14px">Ba lớp kết hợp: kiểm soát nguồn phát sinh → bảo hộ đúng cách → dinh dưỡng hợp lý.</p>
+        <p style="font-size:29px;line-height:1.45;font-weight:500;margin-top:14px">Kết hợp: kiểm soát nguồn phát sinh → trang bị bảo hộ → dinh dưỡng hợp lý hỗ trợ cơ thể (không thay thế điều trị y tế hay giảm phơi nhiễm).</p>
       </div>
       <div style="display:flex;flex-direction:column;min-height:0;gap:26px">
         <div class="stat" style="--d:1;border-top:2.5px solid var(--line);border-bottom:2.5px solid var(--line);padding:22px 2px">
           <h3 style="font-family:var(--disp);font-weight:800;font-size:35px;line-height:1.15;margin-bottom:9px">Đối với ngành Môi trường</h3>
-          <p style="font-size:29.5px;line-height:1.44;font-weight:500;margin-top:0;max-width:none">Xử lý chất thải và bảo vệ nguồn nước, không khí, đất là tuyến phòng ngừa từ gốc: độc tố được chặn lại ngoài môi trường thì không còn đường quay vào cơ thể qua hô hấp, ăn uống và tiếp xúc da.</p>
+          <p style="font-size:29.5px;line-height:1.44;font-weight:500;margin-top:0;max-width:none">Xử lý chất thải và bảo vệ nguồn nước, không khí, đất chính là những giải pháp nền tảng để bảo vệ sức khỏe cộng đồng trước các độc tố xâm nhập qua hô hấp, ăn uống và tiếp xúc ngoài da.</p>
         </div>
         <div class="imgbig" style="--d:2;flex:1"><img class="ph" src="assets/images/52-rau-cu-tuoi.jpg" alt="Rau củ quả tươi nhiều màu sắc, nền tảng của chế độ ăn phòng ngừa độc chất" /><span class="cap">Ăn đa dạng · thực phẩm an toàn · <b>nước sạch</b></span></div>
       </div>

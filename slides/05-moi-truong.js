@@ -24,9 +24,9 @@
       <p class="sub">Từ phương tiện giao thông, nhà máy và quá trình đốt nhiên liệu.</p></div><span class="s-num">47</span></div>
     <div class="split">
       <div class="pts">
-        <div class="pt" style="--d:0"><span class="n fx" style="font-size:38px;padding-top:8px">CO</span><div><h3>Gây thiếu oxy</h3><p>Carbon monoxide chiếm chỗ của oxy trong máu → thiếu oxy mô.</p></div></div>
-        <div class="pt" style="--d:1"><span class="n fx" style="font-size:38px;padding-top:8px">NO<sub>x</sub></span><div><h3>Kích ứng hô hấp</h3><p>Nhóm NO · NO<sub>2</sub> tấn công trực tiếp lên hệ hô hấp.</p></div></div>
-        <div class="pt" style="--d:2"><span class="n fx" style="font-size:38px;padding-top:8px">PM</span><div><h3>Bụi mịn PM2.5</h3><p>Xâm nhập sâu vào phổi → tăng nguy cơ bệnh hô hấp và tim mạch. Bụi mịn <b>không có công thức hóa học cố định</b>, thành phần thay đổi theo nguồn phát thải.</p></div></div>
+        <div class="pt" style="--d:0"><span class="n fx" style="font-size:38px;padding-top:8px">CO</span><div><h3>Gây thiếu oxy</h3><p>Khí CO gây thiếu oxy trong cơ thể.</p></div></div>
+        <div class="pt" style="--d:1"><span class="n fx" style="font-size:38px;padding-top:8px">NO<sub>x</sub></span><div><h3>Kích ứng hô hấp</h3><p>Nhóm <span class="fx">NO · NO<sub>2</sub></span> gây kích ứng, ảnh hưởng hệ hô hấp.</p></div></div>
+        <div class="pt" style="--d:2"><span class="n fx" style="font-size:30px;padding-top:10px">PM<sub>2.5</sub></span><div><h3>Bụi mịn PM<sub>2.5</sub></h3><p>Có thể xâm nhập sâu vào phổi, làm tăng nguy cơ bệnh hô hấp và tim mạch. Bụi mịn <b>không có công thức hóa học cố định</b>.</p></div></div>
       </div>
       <div class="imgbig" style="--d:3"><img class="ph bw" src="assets/images/47-khi-thai-nha-may.jpg" alt="Cụm nhà máy công nghiệp xả khói trắng ra bầu trời" /><span class="cap">Phòng ngừa: kiểm soát tại nguồn · hạn chế tiếp xúc · <b>chế độ ăn cân đối</b></span></div>
     </div>
@@ -41,9 +41,9 @@
     <div class="split">
       <div class="imgbig" style="--d:0"><img class="ph" src="assets/images/48-nuoc-thai-kenh.jpg" alt="Ống xả thải trực tiếp nước bẩn ra dòng kênh" /><span class="cap">Nước thải → nguồn nước → thủy sản → <b>bữa ăn</b></span></div>
       <div class="pts">
-        <div class="pt" style="--d:1"><span class="n">01</span><div><h3>Ba “vị khách” kim loại</h3><p><span class="fx">Pb<sup>2+</sup></span> chì · <span class="fx">Cd<sup>2+</sup></span> cadmium · <span class="fx">Hg<sup>2+</sup></span> thủy ngân, từ nước thải sinh hoạt, công nghiệp, nông nghiệp.</p></div></div>
-        <div class="pt" style="--d:2"><span class="n">02</span><div><h3>Vì sao khó tránh?</h3><p>Chất ô nhiễm đi vào cây trồng và thủy sản, rồi vào cơ thể qua ăn uống mỗi ngày.</p></div></div>
-        <div class="pt" style="--d:3"><span class="n g">03</span><div><h3>Phòng ngừa</h3><p>Xử lý nước thải trước khi xả · dùng nước sạch · thực phẩm rõ nguồn gốc.</p></div></div>
+        <div class="pt" style="--d:1"><span class="n">01</span><div><h3>Chất ô nhiễm trong nước thải</h3><p>Chứa kim loại độc (tiêu biểu: <span class="fx">Pb<sup>2+</sup></span> chì, <span class="fx">Cd<sup>2+</sup></span> cadmium, <span class="fx">Hg<sup>2+</sup></span> thủy ngân), hóa chất và vi sinh vật gây bệnh từ nước thải sinh hoạt, công nghiệp, nông nghiệp.</p></div></div>
+        <div class="pt" style="--d:2"><span class="n">02</span><div><h3>Đường đi vào cơ thể</h3><p>Khi chưa được xử lý, chất ô nhiễm có thể đi vào nguồn nước, cây trồng và thủy sản, sau đó xâm nhập vào cơ thể qua ăn uống.</p></div></div>
+        <div class="pt" style="--d:3"><span class="n g">03</span><div><h3>Phòng ngừa</h3><p>Xử lý nước thải đạt yêu cầu, sử dụng nước sạch và thực phẩm có nguồn gốc rõ ràng.</p></div></div>
       </div>
     </div>
   </div>
@@ -57,15 +57,15 @@
     <div class="split eq">
       <div style="display:flex;flex-direction:column;min-height:0">
         <div class="imgbig" style="--d:0;height:224px;flex:none"><img class="ph" src="assets/images/49-phun-thuoc-tru-sau.jpg" alt="Người nông dân mặc đồ bảo hộ phun thuốc bảo vệ thực vật trên ruộng" /></div>
-        <h3 style="font-family:var(--disp);font-weight:800;font-size:36px;margin-top:20px">Chlorpyrifos <span class="fx" style="font-size:.62em;color:var(--coral-deep)">C<sub>9</sub>H<sub>11</sub>Cl<sub>3</sub>NO<sub>3</sub>PS</span></h3>
-        <p style="font-size:29px;line-height:1.42;font-weight:500;margin-top:8px">Hoạt chất trừ sâu ảnh hưởng hệ thần kinh; dư lượng ở lại trong đất, nước, nông sản. → Dùng đúng quy định, sơ chế an toàn.</p>
-        <div class="imgwhite" style="--d:2;height:196px;flex:none;padding:12px;margin-top:16px"><img src="assets/images/49-cong-thuc-chlorpyrifos.png" alt="Công thức cấu tạo của chlorpyrifos: nhóm phosphorothioate gắn vòng pyridin chứa ba nguyên tử clo" style="max-height:118px" /><span class="chip" style="font-size:19px;padding:6px 15px">Hình 5 · Cấu tạo chlorpyrifos</span></div>
+        <h3 style="font-family:var(--disp);font-weight:800;font-size:36px;margin-top:20px">Thuốc trừ sâu · <span style="font-size:.78em">tiêu biểu: Chlorpyrifos</span> <span class="fx" style="font-size:.56em;color:var(--coral-deep)">C<sub>9</sub>H<sub>11</sub>Cl<sub>3</sub>NO<sub>3</sub>PS</span></h3>
+        <p style="font-size:28px;line-height:1.4;font-weight:500;margin-top:8px">Gây ô nhiễm đất, nước và dư lượng trong nông sản; một số hoạt chất hại hệ thần kinh, nhất là khi tiếp xúc mức cao. → Dùng đúng quy định, kiểm soát dư lượng, sơ chế an toàn.</p>
+        <div class="imgwhite" style="--d:2;height:196px;flex:none;padding:12px;margin-top:16px"><img src="assets/images/49-cong-thuc-chlorpyrifos.png" alt="Công thức cấu tạo hóa học của Chlorpyrifos (C9H11Cl3NO3PS)" style="max-height:118px" /><span class="chip" style="font-size:19px;padding:6px 15px">Hình 5 · Cấu tạo Chlorpyrifos (C<sub>9</sub>H<sub>11</sub>Cl<sub>3</sub>NO<sub>3</sub>PS)</span></div>
       </div>
       <div style="display:flex;flex-direction:column;min-height:0">
         <div class="imgbig" style="--d:1;height:224px;flex:none"><img class="ph" src="assets/images/49-xu-ly-dat-dioxin.jpg" alt="Xử lý đất ô nhiễm dioxin tại sân bay Biên Hòa với máy xúc và đội bảo hộ" /></div>
-        <h3 style="font-family:var(--disp);font-weight:800;font-size:36px;margin-top:20px">TCDD · Dioxin <span class="fx" style="font-size:.62em;color:var(--coral-deep)">C<sub>12</sub>H<sub>4</sub>Cl<sub>4</sub>O<sub>2</sub></span></h3>
-        <p style="font-size:29px;line-height:1.42;font-weight:500;margin-top:8px">Khó phân hủy, tích lũy trong mô mỡ &amp; chuỗi thức ăn; hại miễn dịch, nội tiết, sinh sản, tăng nguy cơ ung thư. → Kiểm soát phát thải, xử lý đất ô nhiễm, giám sát an toàn thực phẩm.</p>
-        <div class="imgwhite" style="--d:3;height:196px;flex:none;padding:12px;margin-top:16px"><img src="assets/images/49-cong-thuc-tcdd.png" alt="Công thức cấu tạo của TCDD: hai vòng benzen nối qua hai nguyên tử oxy, mang bốn nguyên tử clo" style="max-height:118px" /><span class="chip r" style="font-size:19px;padding:6px 15px">Hình 7 · Cấu tạo TCDD (dioxin)</span></div>
+        <h3 style="font-family:var(--disp);font-weight:800;font-size:36px;margin-top:20px">Dioxin · <span style="font-size:.78em">tiêu biểu: 2,3,7,8-TCDD</span> <span class="fx" style="font-size:.56em;color:var(--coral-deep)">C<sub>12</sub>H<sub>4</sub>Cl<sub>4</sub>O<sub>2</sub></span></h3>
+        <p style="font-size:28px;line-height:1.4;font-weight:500;margin-top:8px">Khó phân hủy, tích lũy trong mô mỡ &amp; chuỗi thức ăn; phơi nhiễm đáng kể hại miễn dịch, nội tiết, sinh sản, tăng nguy cơ ung thư. → Kiểm soát phát thải, xử lý đất ô nhiễm, giám sát thực phẩm.</p>
+        <div class="imgwhite" style="--d:3;height:196px;flex:none;padding:12px;margin-top:16px"><img src="assets/images/49-cong-thuc-tcdd.png" alt="Công thức cấu tạo hóa học của 2,3,7,8-TCDD (C12H4Cl4O2)" style="max-height:118px" /><span class="chip r" style="font-size:19px;padding:6px 15px">Hình 7 · Cấu tạo 2,3,7,8-TCDD (C<sub>12</sub>H<sub>4</sub>Cl<sub>4</sub>O<sub>2</sub>)</span></div>
       </div>
     </div>
   </div>

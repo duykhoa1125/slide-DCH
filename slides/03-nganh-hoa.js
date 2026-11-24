@@ -25,27 +25,27 @@
     <div class="split">
       <div class="pts">
         <div class="pt" style="--d:0"><span class="n">01</span><div><h3>Bay hơi rất nhanh</h3><p>Hợp chất chứa cacbon (VOCs), bay hơi mạnh ngay ở nhiệt độ phòng.</p></div></div>
-        <div class="pt" style="--d:1"><span class="n">02</span><div><h3>Tan trong chất béo</h3><p>Hòa tan dầu mỡ, nhựa, sơn → xâm nhập qua hô hấp và thấm thẳng qua da.</p></div></div>
+        <div class="pt" style="--d:1"><span class="n">02</span><div><h3>Tan trong chất béo</h3><p>Hòa tan mạnh chất không phân cực (dầu mỡ, nhựa, sơn) → dễ xâm nhập qua hô hấp và thấm trực tiếp qua da.</p></div></div>
         <div class="pt" style="--d:2"><span class="n">03</span><div><h3>Nguồn phát sinh</h3><p>Lọc hóa dầu · nhựa tổng hợp · cao su &amp; lốp xe · sơn, in ấn, thuộc da.</p></div></div>
       </div>
-      <div class="imgbig" style="--d:3"><img class="ph bw" src="assets/images/25-thap-chung-cat.jpg" alt="Tháp chưng cất tại nhà máy lọc hóa dầu" /><span class="cap">Lọc hóa dầu, <b>nguồn dung môi lớn nhất</b></span></div>
+      <div class="imgbig" style="--d:3"><img class="ph bw" src="assets/images/25-thap-chung-cat.jpg" alt="Tháp chưng cất tại nhà máy lọc hóa dầu" /><span class="cap">Tháp chưng cất tại <b>nhà máy lọc hóa dầu</b>, nguồn phát sinh dung môi</span></div>
     </div>
   </div>
 </section>
 
 <!-- 19 · BENZEN -->
-<section class="slide" data-sec="Người 2, Ngành hóa" data-title="Benzen C₆H₆, vòng thơm nguy hiểm nhất">
+<section class="slide" data-sec="Người 2, Ngành hóa" data-title="Benzen C₆H₆, vòng thơm đơn giản nhất">
   <div class="slide-inner">
     <div class="s-head"><div>
-      <h2 class="title">Benzen <span class="fx" style="font-size:.9em">C<sub>6</sub>H<sub>6</sub></span>, vòng thơm <span class="hl">nguy hiểm nhất</span></h2></div><span class="s-num">26</span></div>
+      <h2 class="title">Benzen <span class="fx" style="font-size:.9em">C<sub>6</sub>H<sub>6</sub></span>, vòng thơm <span class="hl">đơn giản nhất</span></h2></div><span class="s-num">26</span></div>
     <div class="split">
       <div class="imgwhite" style="--d:0">
         <img class="fill" src="assets/images/26-benzen-c6h6.png" alt="Công thức cấu tạo benzen: vòng 6 nguyên tử cacbon, mỗi cacbon gắn 1 hydro" />
         <span class="chip r" style="font-size:24px;padding:9px 22px">C<sub>6</sub>H<sub>6</sub></span>
       </div>
       <div class="pts">
-        <div class="pt" style="--d:1"><span class="n">01</span><div><h3>Cấu trúc đặc biệt</h3><p>Vòng 6 cacbon lục giác đều, liên kết đôi liên hợp bền vững, mỗi C gắn 1 H.</p></div></div>
-        <div class="pt" style="--d:2"><span class="n">02</span><div><h3>Đích tấn công: tủy xương</h3><p>Chất chuyển hóa tấn công tế bào gốc tạo máu → suy tủy, thiếu máu bất sản, <b>bệnh bạch cầu</b>.</p></div></div>
+        <div class="pt" style="--d:1"><span class="n">01</span><div><h3>Cấu trúc đặc biệt</h3><p>Hydrocacbon thơm đơn giản nhất: vòng 6 cacbon lục giác đều, liên kết đôi liên hợp bền vững, mỗi C gắn 1 H.</p></div></div>
+        <div class="pt" style="--d:2"><span class="n">02</span><div><h3>Tác hại cấp &amp; mạn tính</h3><p>Cấp tính ức chế thần kinh trung ương; mạn tính tấn công tủy xương → suy tủy, thiếu máu bất sản, <b>bệnh bạch cầu cấp</b>.</p></div></div>
         <div class="pt" style="--d:3"><span class="n">03</span><div><h3>Nguồn phát sinh</h3><p>Chưng cất dầu mỏ · tiền chất nhựa polystyren, nylon · cao su, sản xuất lốp xe.</p></div></div>
       </div>
     </div>
@@ -64,7 +64,7 @@
       </div>
       <div class="pts">
         <div class="pt" style="--d:1"><span class="n y">01</span><div><h3>Khác benzen ở đâu?</h3><p>Đồng đẳng kế tiếp: thay 1 nguyên tử H trên vòng benzen bằng nhóm metyl <span class="fx">CH<sub>3</sub></span>.</p></div></div>
-        <div class="pt" style="--d:2"><span class="n y">02</span><div><h3>Đích tấn công: thần kinh</h3><p>Tổn thương bao myelin của sợi trục → suy giảm trí nhớ, rối loạn thần kinh ngoại biên, giảm thính lực.</p></div></div>
+        <div class="pt" style="--d:2"><span class="n y">02</span><div><h3>Đích tấn công: thần kinh</h3><p>Tổn thương bao myelin sợi trục → suy giảm trí nhớ, rối loạn thần kinh ngoại biên, ảnh hưởng thính lực.</p></div></div>
         <div class="pt" style="--d:3"><span class="n y">03</span><div><h3>Nguồn phát sinh</h3><p>Sơn dầu, sơn PU · mực in gốc dung môi · tẩy dầu mỡ &amp; keo dán thuộc da.</p></div></div>
       </div>
     </div>
@@ -80,11 +80,11 @@
     <div class="cols5">
       <div class="mcol" style="--d:0"><img src="assets/images/28-kim-loai-pb.png" alt="Mẫu kim loại chì" /><div class="sym">Pb</div><div class="zm">Z=82 · M=207,2</div><p>Ắc quy chì-axit, sơn chống gỉ, hàn thiếc-chì.</p></div>
       <div class="mcol" style="--d:1"><img src="assets/images/28-kim-loai-hg.png" alt="Giọt thủy ngân lỏng trên đĩa" /><div class="sym">Hg</div><div class="zm">Z=80 · M=200,59</div><p>Kim loại lỏng duy nhất, bay hơi mạnh. Bóng huỳnh quang, nhiệt kế.</p></div>
-      <div class="mcol" style="--d:2"><img src="assets/images/28-kim-loai-cd.png" alt="Mẫu kim loại cadimi" /><div class="sym">Cd</div><div class="zm">Z=48 · M=112,41</div><p>Pin Ni-Cd, mạ điện, bột màu CdS/CdSe.</p></div>
-      <div class="mcol" style="--d:3"><img src="assets/images/28-kim-loai-as.png" alt="Mẫu asen kim loại màu xám bạc" /><div class="sym">As</div><div class="zm">Z=33 · M=74,92</div><p><span class="fx">As<sub>2</sub>O<sub>3</sub></span> (thạch tín) cực độc. Thuốc BVTV, tẩm gỗ, luyện thủy tinh.</p></div>
+      <div class="mcol" style="--d:2"><img src="assets/images/28-kim-loai-cd.png" alt="Mẫu kim loại cadimi" /><div class="sym">Cd</div><div class="zm">Z=48 · M=112,414</div><p>Pin Ni-Cd, mạ điện, bột màu CdS/CdSe.</p></div>
+      <div class="mcol" style="--d:3"><img src="assets/images/28-kim-loai-as.png" alt="Mẫu asen kim loại màu xám bạc" /><div class="sym">As</div><div class="zm">Z=33 · M=74,92</div><p><span class="fx">As<sub>2</sub>O<sub>3</sub></span> (thạch tín trắng) độc tính rất cao. Thuốc BVTV, tẩm gỗ, luyện thủy tinh.</p></div>
       <div class="mcol" style="--d:4"><img src="assets/images/28-kim-loai-cu.png" alt="Mẫu đồng kim loại nguyên chất trong hộp mẫu" /><div class="sym">Cu</div><div class="zm">Z=29 · M=63,55</div><p>Cần ở lượng nhỏ, độc ở nồng độ công nghiệp. <span class="fx">CuSO<sub>4</sub></span>, mạ đồng.</p></div>
     </div>
-    <p class="foot" style="--d:5"><span class="bigword">Chung một điểm:</span> cả 5 đều tích lũy theo thời gian, phơi nhiễm hôm nay, phát bệnh sau nhiều năm.</p>
+    <p class="foot" style="--d:5"><span class="bigword">Chung một điểm:</span> không tự phân hủy sinh học → tích lũy dần trong nội tạng và mô, gây rối loạn đa cơ quan.</p>
   </div>
 </section>
 
@@ -97,7 +97,7 @@
       <div class="pts">
         <div class="pt" style="--d:0"><span class="n">01</span><div><h3>Axit mạnh <span class="fx" style="font-size:.72em">H<sub>2</sub>SO<sub>4</sub> · HCl</span></h3><p>H<sub>2</sub>SO<sub>4</sub> háo nước mạnh; HCl bốc khói axit trong không khí ẩm.<span class="src">Bể tẩy gỉ &amp; mạ điện · nhà máy phân bón</span></p></div></div>
         <div class="pt" style="--d:1"><span class="n k">02</span><div><h3>Kiềm mạnh <span class="fx" style="font-size:.72em">NaOH · KOH</span></h3><p>Xút ăn da, tính ăn mòn bazơ cực mạnh.<span class="src">Bột giấy · xà phòng &amp; tẩy rửa · xử lý nước thải</span></p></div></div>
-        <div class="pt" style="--d:2"><span class="n y">03</span><div><h3>Bỏng: axit ≠ kiềm</h3><p>Axit <b>đông tụ protein</b> → bỏng khô. Kiềm <b>hóa lỏng mô</b> → thấm sâu hơn, nguy hiểm hơn; vào mắt có thể mù vĩnh viễn.</p></div></div>
+        <div class="pt" style="--d:2"><span class="n y">03</span><div><h3>Bỏng: axit ≠ kiềm</h3><p>Axit <b>đông tụ protein</b> (vết bỏng khô). Kiềm <b>hóa lỏng, xà phòng hóa mô</b> → thấm sâu hơn; bắn vào mắt gây sẹo đục, giảm thị lực vĩnh viễn.</p></div></div>
       </div>
       <div class="imgbig" style="--d:3"><img class="ph" src="assets/images/29-be-hoa-chat.jpg" alt="Bể hóa chất tẩy gỉ và xử lý bề mặt kim loại trong nhà xưởng" /><span class="cap">Bể tẩy gỉ, <b>sương mù axit</b> nồng độ cao</span></div>
     </div>
@@ -136,12 +136,12 @@
       <h2 class="title" style="margin-top:10px">Khi độc tố hóa học <span class="hl">tấn công</span> cơ thể</h2></div><span class="s-num">31</span></div>
     <div class="compact" style="display:grid;grid-template-columns:1fr 1fr;column-gap:56px;flex:1;min-height:0;align-content:center">
       <div class="pt" style="--d:0"><span class="n">01</span><div><h3>Dung môi → máu &amp; não</h3><p>Ức chế thần kinh trung ương; benzen mạn tính gây suy tủy, bệnh bạch cầu cấp.</p></div></div>
-      <div class="pt" style="--d:1"><span class="n">02</span><div><h3>Toluen → bao myelin</h3><p>Suy giảm trí nhớ, rối loạn thần kinh ngoại biên, giảm thính lực.</p></div></div>
-      <div class="pt" style="--d:2"><span class="n">03</span><div><h3>Kim loại nặng → đa cơ quan</h3><p>Pb: thiếu máu, hại thận · Hg: run tay · Cd: suy thận, loãng xương · As: ung thư da, phổi.</p></div></div>
-      <div class="pt" style="--d:3;border-bottom:2.5px solid var(--line);padding-bottom:16px"><span class="n">04</span><div><h3>Axit / kiềm &amp; formaldehyde</h3><p>Bỏng sâu, phù phổi cấp khi hít sương mù; HCHO kích ứng hô hấp, tăng nguy cơ ung thư vòm họng.</p></div></div>
+      <div class="pt" style="--d:1"><span class="n">02</span><div><h3>Toluen → bao myelin</h3><p>Suy giảm trí nhớ, rối loạn thần kinh ngoại biên, ảnh hưởng thính lực.</p></div></div>
+      <div class="pt" style="--d:2"><span class="n">03</span><div><h3>Kim loại nặng → đa cơ quan</h3><p>Pb: thiếu máu, đau bụng chì · Hg: thần kinh &amp; hại thận · Cd: suy thận, loãng xương · As: ung thư da, phổi, bàng quang · Cu: sốt khói, hại gan thận.</p></div></div>
+      <div class="pt" style="--d:3;border-bottom:2.5px solid var(--line);padding-bottom:16px"><span class="n">04</span><div><h3>Axit / kiềm &amp; formaldehyde</h3><p>Bỏng sâu, phù phổi cấp khi hít sương mù; HCHO kích ứng niêm mạc, nặng hen và tăng nguy cơ ung thư vòm họng, xoang mũi.</p></div></div>
     </div>
     <div class="foot" style="--d:4;margin-top:10px;padding-top:6px;border-top:0">
-      <p><span class="bigword">Điểm chung:</span> càng phơi nhiễm lâu, tổn thương càng sâu và khó hồi phục.</p>
+      <p><span class="bigword">Điểm chung:</span> kim loại nặng tích lũy lâu dài; phơi nhiễm kéo dài làm nặng bệnh mạn tính và tăng nguy cơ ung thư.</p>
     </div>
   </div>
 </section>
@@ -183,7 +183,7 @@
       <div class="pts compact">
         <div class="pt" style="--d:1"><span class="n g">01</span><div><h3>Bảo vệ hô hấp &amp; mắt</h3><p>Kính bảo hộ ôm sát chống văng bắn; mặt nạ phòng độc lắp đúng phin lọc (hơi hữu cơ, khí axit hoặc bụi mịn kim loại nặng).</p></div></div>
         <div class="pt" style="--d:2"><span class="n g">02</span><div><h3>Bảo vệ da &amp; cơ thể</h3><p>Quần áo chống thấm, ủng chịu axit – kiềm, găng tay kháng hóa chất (nitrile, neoprene, butyl).</p></div></div>
-        <div class="pt" style="--d:3"><span class="n g">03</span><div><h3>Lưu ý khi chọn găng</h3><p>Không dùng găng cao su y tế mỏng với dung môi hữu cơ, dung môi sẽ thấm qua và phá hỏng găng.</p></div></div>
+        <div class="pt" style="--d:3"><span class="n g">03</span><div><h3>Lưu ý khi chọn găng</h3><p>Không dùng găng cao su y tế mỏng với dung môi hữu cơ.</p></div></div>
       </div>
     </div>
   </div>
