@@ -50,7 +50,7 @@
 
 <!-- 11 · YẾU TỐ HẠI GAN -->
 <section class="slide" data-sec="Người 1, Dinh dưỡng" data-title="Điều gì đang làm hại gan?">
-  <div class="slide-inner">
+  <div class="slide-inner fit13">
     <div class="s-head" style="margin-bottom:22px"><div>
       <h2 class="title">Điều gì đang <span class="hl">làm hại</span> gan?</h2></div><span class="s-num">13</span></div>
     <div class="split">
@@ -82,7 +82,7 @@
 
 <!-- 14 · CHỐNG OXY HÓA -->
 <section class="slide" data-sec="Người 1, Dinh dưỡng" data-title="Chất chống oxy hóa, đội bảo vệ tế bào">
-  <div class="slide-inner">
+  <div class="slide-inner fit15">
     <div class="s-head"><div>
       <h2 class="title">Chất chống oxy hóa, <span class="hl g">đội bảo vệ</span> tế bào</h2>
       <p class="sub">Ức chế oxy hóa, loại bỏ gốc phản ứng và chấm dứt dây chuyền có hại; chúng <b>phối hợp với nhau</b> ở nhiều vị trí tế bào.</p></div><span class="s-num">15</span></div>

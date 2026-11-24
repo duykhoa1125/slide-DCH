@@ -44,7 +44,7 @@
 
 <!-- 3 · LÝ DO CHỌN ĐỀ TÀI -->
 <section class="slide" data-sec="Nhóm trưởng, Mở đầu · Lý thuyết · Kết luận" data-title="Vì sao chọn đề tài này?">
-  <div class="slide-inner" style="padding-left:118px;padding-right:118px">
+  <div class="slide-inner fit3" style="padding-left:118px;padding-right:118px">
     <div class="s-head"><div>
       <h2 class="title">Vì sao chọn <span class="hl">đề tài</span> này?</h2></div><span class="s-num">03</span></div>
     <div class="split">
@@ -90,7 +90,7 @@
 
 <!-- 4 · KHÁI NIỆM -->
 <section class="slide" data-sec="Nhóm trưởng, Mở đầu · Lý thuyết · Kết luận" data-title="4 khái niệm cốt lõi">
-  <div class="slide-inner">
+  <div class="slide-inner fit5">
     <div class="s-head"><div>
       <h2 class="title">4 khái niệm <span class="hl k">cốt lõi</span></h2></div><span class="s-num">05</span></div>
     <div class="pts tight" style="flex:1">

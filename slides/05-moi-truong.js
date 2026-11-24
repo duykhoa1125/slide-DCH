@@ -35,7 +35,7 @@
 
 <!-- 33 · NƯỚC THẢI -->
 <section class="slide" data-sec="Người 4, Môi trường" data-title="Nước thải & kim loại độc trong nước">
-  <div class="slide-inner">
+  <div class="slide-inner fit48">
     <div class="s-head"><div>
       <h2 class="title">Nước thải, độc <span class="hl">theo dòng nước</span> vào bữa ăn</h2></div><span class="s-num">48</span></div>
     <div class="split">
@@ -51,7 +51,7 @@
 
 <!-- 34 · THUỐC TRỪ SÂU & DIOXIN -->
 <section class="slide" data-sec="Người 4, Môi trường" data-title="Thuốc trừ sâu & dioxin">
-  <div class="slide-inner">
+  <div class="slide-inner fit49">
     <div class="s-head"><div>
       <h2 class="title">Thuốc trừ sâu &amp; <span class="hl">dioxin</span></h2></div><span class="s-num">49</span></div>
     <div class="split eq">

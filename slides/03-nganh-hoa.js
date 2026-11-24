@@ -35,7 +35,7 @@
 
 <!-- 19 · BENZEN -->
 <section class="slide" data-sec="Người 2, Ngành hóa" data-title="Benzen C₆H₆, vòng thơm đơn giản nhất">
-  <div class="slide-inner">
+  <div class="slide-inner fit26">
     <div class="s-head"><div>
       <h2 class="title">Benzen <span class="fx" style="font-size:.9em">C<sub>6</sub>H<sub>6</sub></span>, vòng thơm <span class="hl">đơn giản nhất</span></h2></div><span class="s-num">26</span></div>
     <div class="split">

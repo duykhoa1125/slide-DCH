@@ -83,11 +83,11 @@
     <div class="s-head"><div>
       <h2 class="title">Phòng ngừa độc tố <span class="hl g">ngành xây dựng</span></h2></div><span class="s-num">40</span></div>
     <div class="lrows tight" style="flex:1;justify-content:space-evenly">
-      <div class="lrow" style="--d:0;grid-template-columns:1fr;padding:14px 2px"><div class="nm">Bụi silic &amp; xi măng</div><p>Cắt khoan ướt, hút bụi, đeo khẩu trang chuẩn.</p></div>
-      <div class="lrow" style="--d:1;grid-template-columns:1fr;padding:14px 2px"><div class="nm">Amiăng</div><p>Không tự tháo dỡ, thuê đơn vị chuyên môn xử lý.</p></div>
-      <div class="lrow" style="--d:2;grid-template-columns:1fr;padding:14px 2px"><div class="nm">Chì &amp; thủy ngân</div><p>Hạn chế sử dụng, thu gom thải đúng quy định.</p></div>
-      <div class="lrow" style="--d:3;grid-template-columns:1fr;padding:14px 2px"><div class="nm">Dung môi &amp; khói hàn</div><p>Hút hơi tại nguồn, đeo mặt nạ lọc độc.</p></div>
-      <div class="lrow" style="--d:4;grid-template-columns:1fr;padding:14px 2px"><div class="nm">Khí CO &amp; H<sub>2</sub>S</div><p>Đo khí không gian kín, thông gió cưỡng bức.</p></div>
+      <div class="lrow" style="--d:0;grid-template-columns:1fr;padding:10px 2px"><div class="nm">Bụi silic &amp; xi măng</div><p>Cắt khoan ướt, hút bụi, đeo khẩu trang chuẩn.</p></div>
+      <div class="lrow" style="--d:1;grid-template-columns:1fr;padding:10px 2px"><div class="nm">Amiăng</div><p>Không tự tháo dỡ, thuê đơn vị chuyên môn xử lý.</p></div>
+      <div class="lrow" style="--d:2;grid-template-columns:1fr;padding:10px 2px"><div class="nm">Chì &amp; thủy ngân</div><p>Hạn chế sử dụng, thu gom thải đúng quy định.</p></div>
+      <div class="lrow" style="--d:3;grid-template-columns:1fr;padding:10px 2px"><div class="nm">Dung môi &amp; khói hàn</div><p>Hút hơi tại nguồn, đeo mặt nạ lọc độc.</p></div>
+      <div class="lrow" style="--d:4;grid-template-columns:1fr;padding:10px 2px"><div class="nm">Khí CO &amp; H<sub>2</sub>S</div><p>Đo khí không gian kín, thông gió cưỡng bức.</p></div>
     </div>
   </div>
 </section>
@@ -150,11 +150,11 @@
     <div class="s-head"><div>
       <h2 class="title">Phòng ngừa độc tố <span class="hl g">ngành điện</span></h2></div><span class="s-num">44</span></div>
     <div class="lrows tight" style="flex:1;justify-content:space-evenly">
-      <div class="lrow" style="--d:0;grid-template-columns:1fr;padding:14px 2px"><div class="nm">Pin &amp; bóng đèn cũ</div><p>Thay thế loại không thủy ngân, thu gom pin thải riêng.</p></div>
-      <div class="lrow" style="--d:1;grid-template-columns:1fr;padding:14px 2px"><div class="nm">Hàn mạch &amp; tẩy rửa</div><p>Hút khói tại vị trí hàn, dùng dung môi ít độc.</p></div>
-      <div class="lrow" style="--d:2;grid-template-columns:1fr;padding:14px 2px"><div class="nm">Thiết bị cao áp SF<sub>6</sub></div><p>Đo khí trước bảo dưỡng, dùng bảo hộ chuyên dụng.</p></div>
-      <div class="lrow" style="--d:3;grid-template-columns:1fr;padding:14px 2px"><div class="nm">Phòng ozone &amp; CO</div><p>Kiểm soát phóng điện, không đặt máy phát trong phòng kín.</p></div>
-      <div class="lrow" style="--d:4;grid-template-columns:1fr;padding:14px 2px"><div class="nm">Chống cháy cáp PVC</div><p>Dùng cáp ít khói ít halogen, sơ tán khi có khói độc.</p></div>
+      <div class="lrow" style="--d:0;grid-template-columns:1fr;padding:10px 2px"><div class="nm">Pin &amp; bóng đèn cũ</div><p>Thay thế loại không thủy ngân, thu gom pin thải riêng.</p></div>
+      <div class="lrow" style="--d:1;grid-template-columns:1fr;padding:10px 2px"><div class="nm">Hàn mạch &amp; tẩy rửa</div><p>Hút khói tại vị trí hàn, dùng dung môi ít độc.</p></div>
+      <div class="lrow" style="--d:2;grid-template-columns:1fr;padding:10px 2px"><div class="nm">Thiết bị cao áp SF<sub>6</sub></div><p>Đo khí trước bảo dưỡng, dùng bảo hộ chuyên dụng.</p></div>
+      <div class="lrow" style="--d:3;grid-template-columns:1fr;padding:10px 2px"><div class="nm">Phòng ozone &amp; CO</div><p>Kiểm soát phóng điện, không đặt máy phát trong phòng kín.</p></div>
+      <div class="lrow" style="--d:4;grid-template-columns:1fr;padding:10px 2px"><div class="nm">Chống cháy cáp PVC</div><p>Dùng cáp ít khói ít halogen, sơ tán khi có khói độc.</p></div>
     </div>
   </div>
 </section>

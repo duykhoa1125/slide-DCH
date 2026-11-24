@@ -183,3 +183,47 @@
 .fit31 .pt .n { font-size: 42px; min-width: 68px; }
 .fit31 .pt h3 { font-size: 32px; margin-bottom: 5px; }
 .fit31 .pt p { font-size: 27.5px; line-height: 1.38; }
+
+/* slide 3 (lý do chọn đề tài): chừa thêm khoảng thở dưới */
+.fit3 .pt { padding: 20px 2px; }
+.fit3 .pt h3 { font-size: 33px; }
+.fit3 .pt p { font-size: 27.5px; line-height: 1.38; }
+
+/* slide 5 (4 khái niệm cốt lõi): gọn nhịp 4 mục + dòng kết */
+.fit5 .pts.tight .pt { padding: 13px 2px; }
+.fit5 .pt h3 { font-size: 33px; }
+.fit5 .pt p { font-size: 27.5px; line-height: 1.38; }
+.fit5 .foot { margin-top: 16px; padding-top: 16px; }
+
+/* slide 15 (chất chống oxy hóa): tiêu đề + sub + 3 mục vừa gọn 1 màn hình */
+.slide-inner.fit15 { padding: 40px 58px 46px; }
+.fit15 .s-head { margin-bottom: 18px; }
+.fit15 h2.title { font-size: 58px; margin-top: 10px; }
+.fit15 .sub { font-size: 27px; margin-top: 10px; line-height: 1.38; }
+.fit15 .split { grid-template-columns: .94fr 1.06fr; gap: 46px; }
+.fit15 .imgbig { align-self: center; }
+.fit15 .pt { padding: 14px 2px; gap: 24px; }
+.fit15 .pt h3 { font-size: 32px; }
+.fit15 .pt p { font-size: 27px; line-height: 1.36; }
+
+/* slide 26 (benzen): 3 mục gọn vừa khung */
+.fit26 .pt { padding: 19px 2px; }
+.fit26 .pt h3 { font-size: 33px; }
+.fit26 .pt p { font-size: 27.5px; line-height: 1.38; }
+
+/* slide 48 (nước thải): giữ tiêu đề 1 dòng và 3 mục vừa gọn 1 màn hình */
+.slide-inner.fit48 { padding: 40px 58px 46px; }
+.fit48 .s-head { margin-bottom: 20px; }
+.fit48 h2.title { font-size: 54px; margin-top: 10px; }
+.fit48 .pt { padding: 16px 2px; gap: 24px; }
+.fit48 .pt h3 { font-size: 32px; }
+.fit48 .pt p { font-size: 27px; line-height: 1.36; }
+
+/* slide 49 (thuốc trừ sâu & dioxin): 2 cột cân bằng, không rớt dòng công thức */
+.slide-inner.fit49 { padding: 38px 58px 46px; }
+.fit49 .s-head { margin-bottom: 16px; }
+.fit49 h2.title { margin-top: 8px; }
+.fit49 .imgbig { height: 206px !important; }
+.fit49 h3 { font-size: 29px !important; margin-top: 14px !important; }
+.fit49 p { font-size: 26px !important; line-height: 1.36 !important; margin-top: 6px !important; }
+.fit49 .imgwhite { height: 184px !important; margin-top: 12px !important; }
