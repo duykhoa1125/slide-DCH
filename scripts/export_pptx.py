@@ -1118,7 +1118,7 @@ def write_paragraphs(tf, paras: list[list[dict]], align_str: str = "left", lh_ra
 
 def build_transition_xml() -> etree._Element:
     trans = etree.Element(f"{{{P_NS}}}transition", spd="med")
-    etree.SubElement(trans, f"{{{P_NS}}}push", dir="l")
+    etree.SubElement(trans, f"{{{P_NS}}}fade", thruBlk="0")
     return trans
 
 
