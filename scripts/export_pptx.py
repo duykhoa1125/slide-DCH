@@ -1322,13 +1322,16 @@ def build_timing_xml(animated_groups: list[dict], ambient_groups: list[dict] | N
     root_children = etree.SubElement(root_ctn, f"{{{P_NS}}}childTnLst")
 
     seq = etree.SubElement(root_children, f"{{{P_NS}}}seq", concurrent="1", nextAc="seek")
-    seq_ctn = etree.SubElement(seq, f"{{{P_NS}}}cTn", id=get_id(), dur="indefinite", nodeType="mainSeq")
+    seq_id = get_id()
+    seq_ctn = etree.SubElement(seq, f"{{{P_NS}}}cTn", id=seq_id, dur="indefinite", nodeType="mainSeq")
     seq_children = etree.SubElement(seq_ctn, f"{{{P_NS}}}childTnLst")
 
     outer_par = etree.SubElement(seq_children, f"{{{P_NS}}}par")
     outer_ctn = etree.SubElement(outer_par, f"{{{P_NS}}}cTn", id=get_id(), fill="hold")
     outer_st = etree.SubElement(outer_ctn, f"{{{P_NS}}}stCondLst")
-    etree.SubElement(outer_st, f"{{{P_NS}}}cond", delay="0")
+    etree.SubElement(outer_st, f"{{{P_NS}}}cond", delay="indefinite")
+    on_begin = etree.SubElement(outer_st, f"{{{P_NS}}}cond", evt="onBegin", delay="0")
+    etree.SubElement(on_begin, f"{{{P_NS}}}tn", val=seq_id)
     outer_children = etree.SubElement(outer_ctn, f"{{{P_NS}}}childTnLst")
 
     inner_par = etree.SubElement(outer_children, f"{{{P_NS}}}par")
@@ -1337,22 +1340,25 @@ def build_timing_xml(animated_groups: list[dict], ambient_groups: list[dict] | N
     etree.SubElement(inner_st, f"{{{P_NS}}}cond", delay="0")
     inner_children = etree.SubElement(inner_ctn, f"{{{P_NS}}}childTnLst")
 
+    bld_spids: list[str] = []
+    seen_bld: set[str] = set()
+
+    def track_bld(spid: str) -> None:
+        if spid not in seen_bld:
+            seen_bld.add(spid)
+            bld_spids.append(spid)
+
     for g in valid:
         anim = g["anim"]
-        motion_dur = min(int(g["dur"]), 440)
-        delay = str(min(int(g["delay"]), 550))
+        motion_dur = 280 if anim == "rowin" else 300
+        delay = str(min(round(int(g["delay"]) * 0.45), 260))
         for spid_int in g["spids"]:
             spid = str(spid_int)
-
-            eff_par = etree.SubElement(inner_children, f"{{{P_NS}}}par")
-            eff_ctn = etree.SubElement(eff_par, f"{{{P_NS}}}cTn", id=get_id(), fill="hold")
-            eff_st = etree.SubElement(eff_ctn, f"{{{P_NS}}}stCondLst")
-            etree.SubElement(eff_st, f"{{{P_NS}}}cond", delay=delay)
-            eff_children = etree.SubElement(eff_ctn, f"{{{P_NS}}}childTnLst")
+            track_bld(spid)
 
             use_wipe = anim in ("hlsweep", "rowin", "capup", "numdrop")
             preset_id = "22" if use_wipe else "10"
-            anim_par = etree.SubElement(eff_children, f"{{{P_NS}}}par")
+            anim_par = etree.SubElement(inner_children, f"{{{P_NS}}}par")
             anim_ctn = etree.SubElement(
                 anim_par,
                 f"{{{P_NS}}}cTn",
@@ -1361,13 +1367,14 @@ def build_timing_xml(animated_groups: list[dict], ambient_groups: list[dict] | N
                 presetClass="entr",
                 presetSubtype="0",
                 fill="hold",
+                grpId="0",
                 nodeType="withEffect",
             )
             anim_st = etree.SubElement(anim_ctn, f"{{{P_NS}}}stCondLst")
-            etree.SubElement(anim_st, f"{{{P_NS}}}cond", delay="0")
+            etree.SubElement(anim_st, f"{{{P_NS}}}cond", delay=delay)
             anim_children = etree.SubElement(anim_ctn, f"{{{P_NS}}}childTnLst")
 
-            # Make visible at t=0
+            # Make visible immediately on start
             set_el = etree.SubElement(anim_children, f"{{{P_NS}}}set")
             cbhvr = etree.SubElement(set_el, f"{{{P_NS}}}cBhvr")
             s_ctn = etree.SubElement(cbhvr, f"{{{P_NS}}}cTn", id=get_id(), dur="1", fill="hold")
@@ -1380,15 +1387,15 @@ def build_timing_xml(animated_groups: list[dict], ambient_groups: list[dict] | N
             to_el = etree.SubElement(set_el, f"{{{P_NS}}}to")
             etree.SubElement(to_el, f"{{{P_NS}}}strVal", val="visible")
 
-            # Crisp directional wipes for bars/rows/numbers/captions + snappy opacity reveal (no slow fade)
+            # Crisp directional wipes & ultra-snappy reveal
             if anim in ("hlsweep", "rowin"):
-                eff_filter, eff_dur = "wipe(right)", str(min(motion_dur, 420))
+                eff_filter, eff_dur = "wipe(right)", "260"
             elif anim == "capup":
-                eff_filter, eff_dur = "wipe(up)", "360"
+                eff_filter, eff_dur = "wipe(up)", "240"
             elif anim == "numdrop":
-                eff_filter, eff_dur = "wipe(down)", "360"
+                eff_filter, eff_dur = "wipe(down)", "240"
             else:
-                eff_filter, eff_dur = "fade", "200"
+                eff_filter, eff_dur = "fade", "160"
 
             ae = etree.SubElement(anim_children, f"{{{P_NS}}}animEffect", transition="in", filter=eff_filter)
             ae_bhvr = etree.SubElement(ae, f"{{{P_NS}}}cBhvr")
@@ -1427,29 +1434,27 @@ def build_timing_xml(animated_groups: list[dict], ambient_groups: list[dict] | N
     # Continuous ambient idle loops matching .hl (bob), .floaty, .doodle (drift), .imgbig img.ph (kenburns)
     for amb in amb_valid:
         kind = amb["kind"]
-        dur = str(amb["dur"])
-        delay = str(amb["delay"])
+        dur = str(min(int(amb["dur"]), 4500))
+        delay = str(min(int(amb["delay"]), 450))
         for spid_int in amb["spids"]:
             spid = str(spid_int)
-            eff_par = etree.SubElement(inner_children, f"{{{P_NS}}}par")
-            eff_ctn = etree.SubElement(eff_par, f"{{{P_NS}}}cTn", id=get_id(), fill="hold")
-            eff_st = etree.SubElement(eff_ctn, f"{{{P_NS}}}stCondLst")
-            etree.SubElement(eff_st, f"{{{P_NS}}}cond", delay=delay)
-            eff_children = etree.SubElement(eff_ctn, f"{{{P_NS}}}childTnLst")
-
-            anim_par = etree.SubElement(eff_children, f"{{{P_NS}}}par")
+            track_bld(spid)
+            anim_par = etree.SubElement(inner_children, f"{{{P_NS}}}par")
             anim_ctn = etree.SubElement(
                 anim_par,
                 f"{{{P_NS}}}cTn",
                 id=get_id(),
                 presetID="6" if kind == "kenburns" else "1",
-                presetClass="emph",
+                presetClass="emph" if kind == "kenburns" else "path",
                 presetSubtype="0",
+                repeatCount="99000",
+                autoRev="1",
                 fill="hold",
+                grpId="0",
                 nodeType="withEffect",
             )
             anim_st = etree.SubElement(anim_ctn, f"{{{P_NS}}}stCondLst")
-            etree.SubElement(anim_st, f"{{{P_NS}}}cond", delay="0")
+            etree.SubElement(anim_st, f"{{{P_NS}}}cond", delay=delay)
             anim_children = etree.SubElement(anim_ctn, f"{{{P_NS}}}childTnLst")
 
             if kind in ("bob", "floaty", "drift"):
@@ -1468,8 +1473,6 @@ def build_timing_xml(animated_groups: list[dict], ambient_groups: list[dict] | N
                     f"{{{P_NS}}}cTn",
                     id=get_id(),
                     dur=dur,
-                    repeatCount="indefinite",
-                    autoRev="1",
                     fill="hold",
                 )
                 m_tgt = etree.SubElement(m_bhvr, f"{{{P_NS}}}tgtEl")
@@ -1486,8 +1489,6 @@ def build_timing_xml(animated_groups: list[dict], ambient_groups: list[dict] | N
                         f"{{{P_NS}}}cTn",
                         id=get_id(),
                         dur=dur,
-                        repeatCount="indefinite",
-                        autoRev="1",
                         fill="hold",
                     )
                     r_tgt = etree.SubElement(r_bhvr, f"{{{P_NS}}}tgtEl")
@@ -1500,14 +1501,25 @@ def build_timing_xml(animated_groups: list[dict], ambient_groups: list[dict] | N
                     f"{{{P_NS}}}cTn",
                     id=get_id(),
                     dur=dur,
-                    repeatCount="indefinite",
-                    autoRev="1",
                     fill="hold",
                 )
                 s_tgt = etree.SubElement(s_bhvr, f"{{{P_NS}}}tgtEl")
                 etree.SubElement(s_tgt, f"{{{P_NS}}}spTgt", spid=spid)
                 etree.SubElement(sc, f"{{{P_NS}}}from", x="100000", y="100000")
                 etree.SubElement(sc, f"{{{P_NS}}}to", x="104000", y="104000")
+
+    prev_lst = etree.SubElement(seq, f"{{{P_NS}}}prevCondLst")
+    prev_cond = etree.SubElement(prev_lst, f"{{{P_NS}}}cond", evt="onPrev", delay="0")
+    etree.SubElement(prev_cond, f"{{{P_NS}}}tgtEl").append(etree.Element(f"{{{P_NS}}}sldTgt"))
+
+    next_lst = etree.SubElement(seq, f"{{{P_NS}}}nextCondLst")
+    next_cond = etree.SubElement(next_lst, f"{{{P_NS}}}cond", evt="onNext", delay="0")
+    etree.SubElement(next_cond, f"{{{P_NS}}}tgtEl").append(etree.Element(f"{{{P_NS}}}sldTgt"))
+
+    if bld_spids:
+        bld_lst = etree.SubElement(timing, f"{{{P_NS}}}bldLst")
+        for spid in bld_spids:
+            etree.SubElement(bld_lst, f"{{{P_NS}}}bldP", spid=spid, grpId="0")
 
     return timing
 
