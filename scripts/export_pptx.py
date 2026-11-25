@@ -128,14 +128,16 @@ EXTRACT_SLIDE_JS = """(slideIdx) => {
     agCandidates = [...firstChild.children].filter(el => el.tagName !== 'IMG' && el.textContent.trim().length > 0);
     const snum = inner.querySelector('.s-num');
     if (snum) agCandidates.push(snum);
+    inner.querySelectorAll('.hl, svg.floaty').forEach(el => agCandidates.push(el));
   } else {
     const sel = [
       '.s-head', '.bigtitle', '.statement', '.scope-head', '.col5-head',
       '.sub', '.pt', '.lrow', '.mtr', '.memrow', '.fstep', '.col', '.mcol',
       '.imgbig', '.imgwhite', '.illus', '.stat', '.box', '.foot', '.ts-lv',
       '.fd-step', '.fd-side', '.fd-nd', '.fd-ln', '.newsfr', '.figcap',
-      '.mol', '.s-num', '.scope-pill', '[style*="--d"]',
-      '.txtcol > p', '.split > div > p'
+      '.mol', '.s-num', '.scope-pill', '.tlevels', '[style*="--d"]',
+      '.txtcol > div', '.txtcol > p', '.split > div > p',
+      '.hl', '.imgbig .cap', '.pt .n', '.fstep .n', '.col .n', '.fd-step .n', 'svg.floaty'
     ].join(', ');
     agCandidates = [...inner.querySelectorAll(sel)];
     inner.querySelectorAll('div').forEach(div => {
@@ -144,6 +146,13 @@ EXTRACT_SLIDE_JS = """(slideIdx) => {
       }
     });
   }
+
+  const isDedicatedSubAnim = (el) => el.classList && (
+    el.classList.contains('hl') ||
+    el.classList.contains('cap') ||
+    el.classList.contains('n') ||
+    el.classList.contains('floaty')
+  );
 
   const agSeen = new Set();
   const agUnique = [];
@@ -156,9 +165,10 @@ EXTRACT_SLIDE_JS = """(slideIdx) => {
     agUnique.push(el);
   }
   const agChosen = agUnique.filter(el => {
+    if (isDedicatedSubAnim(el)) return true;
     let p = el.parentElement;
     while (p && p !== inner) {
-      if (agSeen.has(p)) return false;
+      if (agSeen.has(p) && !isDedicatedSubAnim(p)) return false;
       p = p.parentElement;
     }
     return true;
@@ -171,24 +181,43 @@ EXTRACT_SLIDE_JS = """(slideIdx) => {
     let anim = 'pop';
     let dur = 580;
     let delay = Math.min(40 + Math.round(d * 65), 750);
-    if (el.classList.contains('s-head') || el.classList.contains('bigtitle') || el.classList.contains('statement')) {
+    let ambient = null;
+    if (el.classList.contains('hl')) {
+      anim = 'hlsweep';
+      dur = 680;
+      delay = 280;
+      ambient = 'bob';
+    } else if (el.classList.contains('cap')) {
+      anim = 'capup';
+      dur = 700;
+      delay = 300;
+    } else if (el.classList.contains('n')) {
+      anim = 'numdrop';
+      dur = 680;
+      delay = Math.min(120 + Math.round(d * 130), 820);
+    } else if (el.classList.contains('floaty')) {
+      anim = 'fade';
+      dur = 500;
+      delay = 120;
+      ambient = 'floaty';
+    } else if (el.classList.contains('s-head') || el.classList.contains('bigtitle') || el.classList.contains('statement')) {
       anim = 'tin';
-      dur = 620;
+      dur = 640;
       delay = el.classList.contains('statement') ? Math.min(30 + Math.round(d * 55), 400) : 0;
     } else if (el.classList.contains('lrow') || el.classList.contains('mtr') || el.classList.contains('memrow')) {
       anim = 'rowin';
-      dur = 520;
+      dur = 540;
       delay = el.classList.contains('head') ? 0 : Math.min(60 + Math.round(d * 80), 850);
     } else if (el.classList.contains('fd-ln')) {
       anim = 'fade';
-      dur = 450;
+      dur = 480;
       delay = Math.min(260 + Math.round(d * 70), 800);
     } else if (el.classList.contains('s-num') && isFullBleed) {
       anim = 'pop';
       dur = 450;
       delay = 120;
     }
-    animGroups.push({ id: idx, anim, dur, delay });
+    animGroups.push({ id: idx, anim, dur, delay, ambient });
   });
 
   const getAgId = (el) => {
@@ -260,6 +289,7 @@ EXTRACT_SLIDE_JS = """(slideIdx) => {
         radius: parseFloat(cs.borderTopLeftRadius) || Math.max(0, parentRadius - parentBorder),
         fullBleedImg: !!(isFullBleed && el.closest('.imgbig') === firstChild),
         inImgBig: !!isCapSibling,
+        kenburns: !!(el.classList.contains('ph') && parentCard && parentCard.classList.contains('imgbig') && !(isFullBleed && el.closest('.imgbig') === firstChild)),
         agId
       });
       continue;
@@ -804,6 +834,81 @@ EXTRACT_SLIDE_JS = """(slideIdx) => {
     });
   });
 
+  // 4b. Extract background chemistry doodles as vector polylines with ambient drift metadata
+  const doodleItems = [];
+  const SVG_NS = 'http://www.w3.org/2000/svg';
+  inner.querySelectorAll('.doodles .doodle').forEach((dEl, dIdx) => {
+    const svg = dEl.querySelector('svg');
+    if (!svg) return;
+    const dcs = getComputedStyle(dEl);
+    const dColor = dcs.color;
+    const dOp = parseFloat(dcs.opacity) || 0.15;
+    const durMs = Math.round((parseFloat(dEl.style.animationDuration) || 7) * 1000);
+    const svgCtm = svg.getScreenCTM();
+    if (!svgCtm) return;
+    const baseScale = Math.hypot(svgCtm.a, svgCtm.b) || 1;
+    const strokeW = 3.4 * baseScale;
+
+    svg.querySelectorAll('path, circle, ellipse').forEach(node => {
+      const ctm = node.getScreenCTM() || svgCtm;
+      const tag = node.tagName.toLowerCase();
+      if (tag === 'path') {
+        const rawD = (node.getAttribute('d') || '').trim();
+        const subpaths = rawD.split(/(?=[Mm])/).filter(s => s.trim().length > 0);
+        for (const sp of subpaths) {
+          const tmp = document.createElementNS(SVG_NS, 'path');
+          tmp.setAttribute('d', sp);
+          svg.appendChild(tmp);
+          try {
+            const totalLen = tmp.getTotalLength();
+            if (totalLen > 1) {
+              const steps = Math.max(8, Math.min(28, Math.ceil(totalLen / 4)));
+              const pts = [];
+              for (let s = 0; s <= steps; s++) {
+                const pt = tmp.getPointAtLength((s / steps) * totalLen);
+                const tp = pt.matrixTransform(ctm);
+                pts.push([tp.x, tp.y]);
+              }
+              doodleItems.push({
+                dIdx,
+                pts,
+                closed: /[Zz]\\s*$/.test(sp.trim()),
+                color: dColor,
+                opacity: dOp,
+                strokeW,
+                durMs
+              });
+            }
+          } finally {
+            tmp.remove();
+          }
+        }
+      } else if (tag === 'circle' || tag === 'ellipse') {
+        try {
+          const totalLen = node.getTotalLength();
+          if (totalLen > 1) {
+            const steps = 24;
+            const pts = [];
+            for (let s = 0; s < steps; s++) {
+              const pt = node.getPointAtLength((s / steps) * totalLen);
+              const tp = pt.matrixTransform(ctm);
+              pts.push([tp.x, tp.y]);
+            }
+            doodleItems.push({
+              dIdx,
+              pts,
+              closed: true,
+              color: dColor,
+              opacity: dOp,
+              strokeW,
+              durMs
+            });
+          }
+        } catch (e) {}
+      }
+    });
+  });
+
   // 5. Speaker notes
   const noteLines = [];
   const title = slide.dataset.title || '';
@@ -834,6 +939,7 @@ EXTRACT_SLIDE_JS = """(slideIdx) => {
     badges,
     textBlocks,
     svgItems,
+    doodleItems,
     notes: noteLines.join('\\n')
   };
 }"""
@@ -1122,10 +1228,11 @@ def build_transition_xml() -> etree._Element:
     return trans
 
 
-def build_timing_xml(animated_groups: list[dict]) -> etree._Element | None:
-    """Build valid OOXML <p:timing> auto-playing all grouped entrance animations on slide entry."""
+def build_timing_xml(animated_groups: list[dict], ambient_groups: list[dict] | None = None) -> etree._Element | None:
+    """Build valid OOXML <p:timing> auto-playing all grouped entrance animations and continuous ambient loops."""
     valid = [g for g in animated_groups if g["spids"]]
-    if not valid:
+    amb_valid = [a for a in (ambient_groups or []) if a["spids"]]
+    if not valid and not amb_valid:
         return None
 
     timing = etree.Element(f"{{{P_NS}}}timing")
@@ -1159,15 +1266,12 @@ def build_timing_xml(animated_groups: list[dict]) -> etree._Element | None:
     etree.SubElement(inner_st, f"{{{P_NS}}}cond", delay="0")
     inner_children = etree.SubElement(inner_ctn, f"{{{P_NS}}}childTnLst")
 
-    first_shape = True
     for g in valid:
         anim = g["anim"]
         dur = str(g["dur"])
         delay = str(g["delay"])
         for spid_int in g["spids"]:
             spid = str(spid_int)
-            node_type = "afterEffect" if first_shape else "withEffect"
-            first_shape = False
 
             eff_par = etree.SubElement(inner_children, f"{{{P_NS}}}par")
             eff_ctn = etree.SubElement(eff_par, f"{{{P_NS}}}cTn", id=get_id(), fill="hold")
@@ -1175,16 +1279,17 @@ def build_timing_xml(animated_groups: list[dict]) -> etree._Element | None:
             etree.SubElement(eff_st, f"{{{P_NS}}}cond", delay=delay)
             eff_children = etree.SubElement(eff_ctn, f"{{{P_NS}}}childTnLst")
 
+            preset_id = "22" if anim == "hlsweep" else "10"
             anim_par = etree.SubElement(eff_children, f"{{{P_NS}}}par")
             anim_ctn = etree.SubElement(
                 anim_par,
                 f"{{{P_NS}}}cTn",
                 id=get_id(),
-                presetID="10",
+                presetID=preset_id,
                 presetClass="entr",
                 presetSubtype="0",
                 fill="hold",
-                nodeType=node_type,
+                nodeType="withEffect",
             )
             anim_st = etree.SubElement(anim_ctn, f"{{{P_NS}}}stCondLst")
             etree.SubElement(anim_st, f"{{{P_NS}}}cond", delay="0")
@@ -1203,19 +1308,24 @@ def build_timing_xml(animated_groups: list[dict]) -> etree._Element | None:
             to_el = etree.SubElement(set_el, f"{{{P_NS}}}to")
             etree.SubElement(to_el, f"{{{P_NS}}}strVal", val="visible")
 
-            # Fade in (all animations use smooth alpha fade)
-            ae = etree.SubElement(anim_children, f"{{{P_NS}}}animEffect", transition="in", filter="fade")
+            # Wipe right for .hl highlight sweep, smooth fade for others
+            eff_filter = "wipe(right)" if anim == "hlsweep" else "fade"
+            ae = etree.SubElement(anim_children, f"{{{P_NS}}}animEffect", transition="in", filter=eff_filter)
             ae_bhvr = etree.SubElement(ae, f"{{{P_NS}}}cBhvr")
-            ae_ctn = etree.SubElement(ae_bhvr, f"{{{P_NS}}}cTn", id=get_id(), dur=dur)
+            etree.SubElement(ae_bhvr, f"{{{P_NS}}}cTn", id=get_id(), dur=dur)
             ae_tgt = etree.SubElement(ae_bhvr, f"{{{P_NS}}}tgtEl")
             etree.SubElement(ae_tgt, f"{{{P_NS}}}spTgt", spid=spid)
 
-            # Motion offset mirroring animations.css (tin: from left, rowin: from left, pop: from below)
-            if anim in ("tin", "rowin", "pop"):
+            # Motion path mirroring styles/animations.css
+            if anim in ("tin", "rowin", "pop", "numdrop", "capup"):
                 if anim == "tin":
                     from_x, from_y = "-0.045", "0"
                 elif anim == "rowin":
-                    from_x, from_y = "-0.022", "0"
+                    from_x, from_y = "-0.024", "0"
+                elif anim == "numdrop":
+                    from_x, from_y = "0", "-0.040"
+                elif anim == "capup":
+                    from_x, from_y = "0", "0.045"
                 else:
                     from_x, from_y = "0", "0.032"
                 mot = etree.SubElement(
@@ -1234,10 +1344,95 @@ def build_timing_xml(animated_groups: list[dict]) -> etree._Element | None:
                 etree.SubElement(m_attrs, f"{{{P_NS}}}attrName").text = "ppt_x"
                 etree.SubElement(m_attrs, f"{{{P_NS}}}attrName").text = "ppt_y"
 
+    # Continuous ambient idle loops matching .hl (bob), .floaty, .doodle (drift), .imgbig img.ph (kenburns)
+    for amb in amb_valid:
+        kind = amb["kind"]
+        dur = str(amb["dur"])
+        delay = str(amb["delay"])
+        for spid_int in amb["spids"]:
+            spid = str(spid_int)
+            eff_par = etree.SubElement(inner_children, f"{{{P_NS}}}par")
+            eff_ctn = etree.SubElement(eff_par, f"{{{P_NS}}}cTn", id=get_id(), fill="hold")
+            eff_st = etree.SubElement(eff_ctn, f"{{{P_NS}}}stCondLst")
+            etree.SubElement(eff_st, f"{{{P_NS}}}cond", delay=delay)
+            eff_children = etree.SubElement(eff_ctn, f"{{{P_NS}}}childTnLst")
+
+            anim_par = etree.SubElement(eff_children, f"{{{P_NS}}}par")
+            anim_ctn = etree.SubElement(
+                anim_par,
+                f"{{{P_NS}}}cTn",
+                id=get_id(),
+                presetID="6" if kind == "kenburns" else "1",
+                presetClass="emph",
+                presetSubtype="0",
+                fill="hold",
+                nodeType="withEffect",
+            )
+            anim_st = etree.SubElement(anim_ctn, f"{{{P_NS}}}stCondLst")
+            etree.SubElement(anim_st, f"{{{P_NS}}}cond", delay="0")
+            anim_children = etree.SubElement(anim_ctn, f"{{{P_NS}}}childTnLst")
+
+            if kind in ("bob", "floaty", "drift"):
+                dy = "-0.007" if kind == "bob" else ("-0.018" if kind == "floaty" else "-0.008")
+                mot = etree.SubElement(
+                    anim_children,
+                    f"{{{P_NS}}}animMotion",
+                    origin="layout",
+                    path=f"M 0 0 L 0 {dy} E",
+                    pathEditMode="relative",
+                    ptsTypes="AA",
+                )
+                m_bhvr = etree.SubElement(mot, f"{{{P_NS}}}cBhvr", rctx="PPT")
+                etree.SubElement(
+                    m_bhvr,
+                    f"{{{P_NS}}}cTn",
+                    id=get_id(),
+                    dur=dur,
+                    repeatCount="indefinite",
+                    autoRev="1",
+                    fill="hold",
+                )
+                m_tgt = etree.SubElement(m_bhvr, f"{{{P_NS}}}tgtEl")
+                etree.SubElement(m_tgt, f"{{{P_NS}}}spTgt", spid=spid)
+                m_attrs = etree.SubElement(m_bhvr, f"{{{P_NS}}}attrNameLst")
+                etree.SubElement(m_attrs, f"{{{P_NS}}}attrName").text = "ppt_x"
+                etree.SubElement(m_attrs, f"{{{P_NS}}}attrName").text = "ppt_y"
+
+                if kind == "bob":
+                    rot = etree.SubElement(anim_children, f"{{{P_NS}}}animRot", by="42000")
+                    r_bhvr = etree.SubElement(rot, f"{{{P_NS}}}cBhvr")
+                    etree.SubElement(
+                        r_bhvr,
+                        f"{{{P_NS}}}cTn",
+                        id=get_id(),
+                        dur=dur,
+                        repeatCount="indefinite",
+                        autoRev="1",
+                        fill="hold",
+                    )
+                    r_tgt = etree.SubElement(r_bhvr, f"{{{P_NS}}}tgtEl")
+                    etree.SubElement(r_tgt, f"{{{P_NS}}}spTgt", spid=spid)
+            elif kind == "kenburns":
+                sc = etree.SubElement(anim_children, f"{{{P_NS}}}animScale", zoomContents="1")
+                s_bhvr = etree.SubElement(sc, f"{{{P_NS}}}cBhvr")
+                etree.SubElement(
+                    s_bhvr,
+                    f"{{{P_NS}}}cTn",
+                    id=get_id(),
+                    dur=dur,
+                    repeatCount="indefinite",
+                    autoRev="1",
+                    fill="hold",
+                )
+                s_tgt = etree.SubElement(s_bhvr, f"{{{P_NS}}}tgtEl")
+                etree.SubElement(s_tgt, f"{{{P_NS}}}spTgt", spid=spid)
+                etree.SubElement(sc, f"{{{P_NS}}}from", x="100000", y="100000")
+                etree.SubElement(sc, f"{{{P_NS}}}to", x="104000", y="104000")
+
     return timing
 
 
-def insert_slide_fx(slide, add_transition: bool, animated_groups: list[dict]) -> None:
+def insert_slide_fx(slide, add_transition: bool, animated_groups: list[dict], ambient_groups: list[dict] | None = None) -> None:
     root = slide._element
     ext_lst = root.find(f"{{{P_NS}}}extLst")
 
@@ -1249,7 +1444,7 @@ def insert_slide_fx(slide, add_transition: bool, animated_groups: list[dict]) ->
 
     if add_transition:
         insert_before_ext(build_transition_xml())
-    timing = build_timing_xml(animated_groups)
+    timing = build_timing_xml(animated_groups, ambient_groups)
     if timing is not None:
         insert_before_ext(timing)
 
@@ -1391,11 +1586,20 @@ def export_deck(root_dir: Path, out_path: Path) -> None:
             slide.background.fill.solid()
             slide.background.fill.fore_color.rgb = bg_col[0]
 
-            # Track shape IDs per animation group
+            # Track shape IDs per entrance animation group & continuous ambient groups
             groups_map: dict[int, dict] = {
-                g["id"]: {"id": g["id"], "anim": g["anim"], "dur": g["dur"], "delay": g["delay"], "spids": []}
+                g["id"]: {
+                    "id": g["id"],
+                    "anim": g["anim"],
+                    "dur": g["dur"],
+                    "delay": g["delay"],
+                    "ambient": g.get("ambient"),
+                    "spids": [],
+                }
                 for g in meta["animGroups"]
             }
+            kenburns_spids: list[int] = []
+            doodle_groups: dict[int, dict] = {}
 
             def register_shape(shape, ag_id: int) -> None:
                 nonlocal total_shapes
@@ -1437,6 +1641,30 @@ def export_deck(root_dir: Path, out_path: Path) -> None:
                 if not b["bgGrad"] or not set_linear_gradient(ov, b["bgGrad"]):
                     set_solid_fill_alpha(ov.fill, RGBColor(22, 19, 15), 0.72)
                 total_shapes += 1
+
+            # 3b. Vector chemistry doodles drifting gently in background
+            for d_item in meta.get("doodleItems", []):
+                pts = d_item["pts"]
+                if len(pts) < 2:
+                    continue
+                fb = slide.shapes.build_freeform(emu(pts[0][0]), emu(pts[0][1]))
+                fb.add_line_segments([(emu(px), emu(py)) for px, py in pts[1:]], close=d_item["closed"])
+                dshp = fb.convert_to_shape()
+                dshp.fill.background()
+                dcol = parse_color(d_item["color"]) or (RGBColor(22, 19, 15), 1.0)
+                dshp.line.color.rgb = dcol[0]
+                dshp.line.width = Pt(max(0.9, d_item["strokeW"] * PX_TO_PT))
+                ln = dshp.line._get_or_add_ln()
+                ln.set("cap", "rnd")
+                sf = ln.find(f"{{{A_NS}}}solidFill")
+                if sf is not None and len(sf):
+                    op_val = int(round(max(0.05, min(1.0, d_item["opacity"])) * 100000))
+                    etree.SubElement(sf[0], f"{{{A_NS}}}alpha", val=str(op_val))
+                dshp.shadow.inherit = False
+                total_shapes += 1
+                did = d_item["dIdx"]
+                grp = doodle_groups.setdefault(did, {"kind": "drift", "dur": max(2200, d_item["durMs"] // 2), "delay": (did * 250) % 900, "spids": []})
+                grp["spids"].append(dshp.shape_id)
 
             # 4. Card boxes & backgrounds (excluding full-bleed overlays & photo captions which go on top of photos)
             for b in meta["boxes"]:
@@ -1488,6 +1716,8 @@ def export_deck(root_dir: Path, out_path: Path) -> None:
                 pic = slide.shapes.add_picture(io.BytesIO(blob), emu(im["x"]), emu(im["y"]), emu(im["w"]), emu(im["h"]))
                 total_pics += 1
                 register_shape(pic, im["agId"])
+                if im.get("kenburns"):
+                    kenburns_spids.append(pic.shape_id)
 
             # 7. Caption bars (.imgbig .cap) stacked directly above photos
             for b in meta["boxes"]:
@@ -1613,9 +1843,19 @@ def export_deck(root_dir: Path, out_path: Path) -> None:
             if meta["notes"]:
                 slide.notes_slide.notes_text_frame.text = meta["notes"]
 
-            # 12. Native slide push transition (slides 2..N) + grouped entrance animations
+            # 12. Native slide fade transition (slides 2..N) + grouped entrance & continuous ambient loops
             ordered_groups = sorted(groups_map.values(), key=lambda g: (g["delay"], g["id"]))
-            insert_slide_fx(slide, add_transition=(idx > 0), animated_groups=ordered_groups)
+            ambient_groups = []
+            for g in ordered_groups:
+                if g.get("ambient") == "bob" and g["spids"]:
+                    ambient_groups.append({"kind": "bob", "dur": 1600, "delay": g["delay"] + g["dur"] + 80, "spids": g["spids"]})
+                elif g.get("ambient") == "floaty" and g["spids"]:
+                    ambient_groups.append({"kind": "floaty", "dur": 2750, "delay": 200, "spids": g["spids"]})
+            if kenburns_spids:
+                ambient_groups.append({"kind": "kenburns", "dur": 6500, "delay": 500, "spids": kenburns_spids})
+            ambient_groups.extend(doodle_groups.values())
+
+            insert_slide_fx(slide, add_transition=(idx > 0), animated_groups=ordered_groups, ambient_groups=ambient_groups)
 
             if (idx + 1) % 10 == 0 or idx + 1 == total:
                 print(f"  Built slide {idx + 1}/{total} ({len(meta['textBlocks'])} textboxes, {len(meta['badges'])} badges)", flush=True)
