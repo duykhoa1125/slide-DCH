@@ -1223,8 +1223,8 @@ def write_paragraphs(tf, paras: list[list[dict]], align_str: str = "left", lh_ra
 
 
 def build_transition_xml() -> etree._Element:
-    trans = etree.Element(f"{{{P_NS}}}transition", spd="med")
-    etree.SubElement(trans, f"{{{P_NS}}}fade", thruBlk="0")
+    trans = etree.Element(f"{{{P_NS}}}transition", spd="fast")
+    etree.SubElement(trans, f"{{{P_NS}}}cover", dir="l")
     return trans
 
 
@@ -1268,8 +1268,8 @@ def build_timing_xml(animated_groups: list[dict], ambient_groups: list[dict] | N
 
     for g in valid:
         anim = g["anim"]
-        dur = str(g["dur"])
-        delay = str(g["delay"])
+        motion_dur = min(int(g["dur"]), 440)
+        delay = str(min(int(g["delay"]), 550))
         for spid_int in g["spids"]:
             spid = str(spid_int)
 
@@ -1279,7 +1279,8 @@ def build_timing_xml(animated_groups: list[dict], ambient_groups: list[dict] | N
             etree.SubElement(eff_st, f"{{{P_NS}}}cond", delay=delay)
             eff_children = etree.SubElement(eff_ctn, f"{{{P_NS}}}childTnLst")
 
-            preset_id = "22" if anim == "hlsweep" else "10"
+            use_wipe = anim in ("hlsweep", "rowin", "capup", "numdrop")
+            preset_id = "22" if use_wipe else "10"
             anim_par = etree.SubElement(eff_children, f"{{{P_NS}}}par")
             anim_ctn = etree.SubElement(
                 anim_par,
@@ -1308,26 +1309,34 @@ def build_timing_xml(animated_groups: list[dict], ambient_groups: list[dict] | N
             to_el = etree.SubElement(set_el, f"{{{P_NS}}}to")
             etree.SubElement(to_el, f"{{{P_NS}}}strVal", val="visible")
 
-            # Wipe right for .hl highlight sweep, smooth fade for others
-            eff_filter = "wipe(right)" if anim == "hlsweep" else "fade"
+            # Crisp directional wipes for bars/rows/numbers/captions + snappy opacity reveal (no slow fade)
+            if anim in ("hlsweep", "rowin"):
+                eff_filter, eff_dur = "wipe(right)", str(min(motion_dur, 420))
+            elif anim == "capup":
+                eff_filter, eff_dur = "wipe(up)", "360"
+            elif anim == "numdrop":
+                eff_filter, eff_dur = "wipe(down)", "360"
+            else:
+                eff_filter, eff_dur = "fade", "200"
+
             ae = etree.SubElement(anim_children, f"{{{P_NS}}}animEffect", transition="in", filter=eff_filter)
             ae_bhvr = etree.SubElement(ae, f"{{{P_NS}}}cBhvr")
-            etree.SubElement(ae_bhvr, f"{{{P_NS}}}cTn", id=get_id(), dur=dur)
+            etree.SubElement(ae_bhvr, f"{{{P_NS}}}cTn", id=get_id(), dur=eff_dur)
             ae_tgt = etree.SubElement(ae_bhvr, f"{{{P_NS}}}tgtEl")
             etree.SubElement(ae_tgt, f"{{{P_NS}}}spTgt", spid=spid)
 
-            # Motion path mirroring styles/animations.css
+            # Snappy motion path mirroring styles/animations.css
             if anim in ("tin", "rowin", "pop", "numdrop", "capup"):
                 if anim == "tin":
                     from_x, from_y = "-0.045", "0"
                 elif anim == "rowin":
-                    from_x, from_y = "-0.024", "0"
+                    from_x, from_y = "-0.022", "0"
                 elif anim == "numdrop":
-                    from_x, from_y = "0", "-0.040"
+                    from_x, from_y = "0", "-0.036"
                 elif anim == "capup":
-                    from_x, from_y = "0", "0.045"
+                    from_x, from_y = "0", "0.040"
                 else:
-                    from_x, from_y = "0", "0.032"
+                    from_x, from_y = "0", "0.030"
                 mot = etree.SubElement(
                     anim_children,
                     f"{{{P_NS}}}animMotion",
@@ -1337,7 +1346,7 @@ def build_timing_xml(animated_groups: list[dict], ambient_groups: list[dict] | N
                     ptsTypes="AA",
                 )
                 m_bhvr = etree.SubElement(mot, f"{{{P_NS}}}cBhvr", rctx="PPT")
-                etree.SubElement(m_bhvr, f"{{{P_NS}}}cTn", id=get_id(), dur=dur, fill="hold")
+                etree.SubElement(m_bhvr, f"{{{P_NS}}}cTn", id=get_id(), dur=str(motion_dur), fill="hold")
                 m_tgt = etree.SubElement(m_bhvr, f"{{{P_NS}}}tgtEl")
                 etree.SubElement(m_tgt, f"{{{P_NS}}}spTgt", spid=spid)
                 m_attrs = etree.SubElement(m_bhvr, f"{{{P_NS}}}attrNameLst")
