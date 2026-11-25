@@ -36,7 +36,7 @@ SLIDE_W_EMU = Emu(12192000)
 SLIDE_H_EMU = Emu(6858000)
 PX_TO_EMU = 7620
 PX_TO_PT = 0.60
-FONT_SCALE = 0.96
+FONT_SCALE = 0.99
 
 P_NS = "http://schemas.openxmlformats.org/presentationml/2006/main"
 A_NS = "http://schemas.openxmlformats.org/drawingml/2006/main"
@@ -552,18 +552,62 @@ EXTRACT_SLIDE_JS = """(slideIdx) => {
         paras,
         agId
       });
+    } else if (hasBlockChildren && !hasEmbeddedBadge) {
+      // Group contiguous non-block inline nodes into single wrapping multi-run textboxes
+      const parentBox = trimTextBoxBounds(el, el.getBoundingClientRect());
+      const fs = parseFloat(cs.fontSize) || 24;
+      const lh = parseFloat(cs.lineHeight);
+      const lhRatio = (!isNaN(lh) && fs > 0) ? (lh / fs) : 1.3;
+      const flushInlineNodes = (nodes) => {
+        if (!nodes.length) return;
+        const runs = [];
+        for (const n of nodes) {
+          if (n.nodeType === Node.ELEMENT_NODE) {
+            consumedInline.add(n);
+            n.querySelectorAll('*').forEach(d => consumedInline.add(d));
+          }
+          extractInlineRuns(n, baseState, runs);
+        }
+        const paras = runsToParagraphs(runs);
+        if (!paras.length) return;
+        const rng = document.createRange();
+        rng.setStartBefore(nodes[0]);
+        rng.setEndAfter(nodes[nodes.length - 1]);
+        const rr = rng.getBoundingClientRect();
+        if (rr.width < 1 || rr.height < 1) return;
+        textBlocks.push({
+          x: rr.left,
+          y: rr.top,
+          w: Math.max(rr.width, parentBox.x + parentBox.w - rr.left),
+          h: rr.height,
+          align: cs.textAlign || 'left',
+          lhRatio,
+          singleLine: false,
+          paras,
+          agId
+        });
+      };
+      let buf = [];
+      for (const ch of el.childNodes) {
+        if (isBlockChild(ch)) {
+          flushInlineNodes(buf);
+          buf = [];
+        } else {
+          buf.push(ch);
+        }
+      }
+      flushInlineNodes(buf);
     } else {
-      // Extract only direct text / inline-flow nodes outside badges and outside separate block children
-      const lines = [];
+      // Has embedded badge (.hl, etc.): collect inline slices and merge same-line runs between badges
+      const pieces = [];
+      let segId = 0;
       const addNodeRects = (node, state) => {
         if (node.nodeType === Node.TEXT_NODE) {
           const raw = node.nodeValue || '';
-          if (!raw.trim()) return;
+          if (!raw.length) return;
           let i = 0;
           const len = raw.length;
           while (i < len) {
-            while (i < len && /\\s/.test(raw[i])) i++;
-            if (i >= len) break;
             let j = i + 1;
             const range = document.createRange();
             range.setStart(node, i);
@@ -580,25 +624,39 @@ EXTRACT_SLIDE_JS = """(slideIdx) => {
               prevRects = rects;
               j++;
             }
-            if (prevRects.length > 0) {
+            let piece = raw.slice(i, j).replace(/[ \\t\\r\\n]+/g, ' ');
+            if (state.transform === 'uppercase') piece = piece.toUpperCase();
+            if (piece.length > 0 && prevRects.length > 0) {
               const rc = prevRects[0];
-              let piece = raw.slice(i, j).replace(/[ \\t\\r\\n]+/g, ' ');
-              if (state.transform === 'uppercase') piece = piece.toUpperCase();
-              piece = piece.trim();
-              if (piece) {
-                lines.push({
+              if (rc.width > 0 || piece === ' ') {
+                pieces.push({
+                  segId,
                   x: rc.left,
                   y: rc.top,
-                  w: rc.width,
-                  h: rc.height,
-                  runs: [{ ...state, text: piece }]
+                  right: rc.right,
+                  bottom: rc.bottom,
+                  run: {
+                    text: piece,
+                    font: state.font,
+                    sizePx: state.sizePx,
+                    bold: state.bold,
+                    italic: state.italic,
+                    underline: state.underline,
+                    color: state.color,
+                    baseline: state.baseline,
+                    spcPx: state.spcPx,
+                    href: state.href
+                  }
                 });
               }
             }
             i = j;
           }
         } else if (node.nodeType === Node.ELEMENT_NODE) {
-          if (isBadgeEl(node) || isBlockChild(node) || node.tagName === 'BR') return;
+          if (isBadgeEl(node) || isBlockChild(node) || node.tagName === 'BR') {
+            segId++;
+            return;
+          }
           consumedInline.add(node);
           const ncs = getComputedStyle(node);
           if (ncs.display === 'none' || ncs.visibility === 'hidden' || parseFloat(ncs.opacity) === 0) return;
@@ -619,24 +677,37 @@ EXTRACT_SLIDE_JS = """(slideIdx) => {
         }
       };
       for (const ch of el.childNodes) addNodeRects(ch, baseState);
-      for (const seg of lines) {
-        const cleanRuns = seg.runs.map(r => ({
-          text: r.text,
-          font: r.font,
-          sizePx: r.sizePx,
-          bold: r.bold,
-          italic: r.italic,
-          underline: r.underline,
-          color: r.color,
-          baseline: r.baseline,
-          spcPx: r.spcPx,
-          href: r.href
-        }));
+
+      // Merge contiguous inline runs on the same visual line within the same segment
+      const merged = [];
+      for (const p of pieces) {
+        if (!merged.length) {
+          merged.push({ segId: p.segId, x: p.x, y: p.y, right: p.right, bottom: p.bottom, runs: [p.run] });
+          continue;
+        }
+        const cur = merged[merged.length - 1];
+        const sameSeg = cur.segId === p.segId;
+        const overlapsY = p.y < cur.bottom - 4 && p.x >= cur.x - 8;
+        if (sameSeg && overlapsY) {
+          cur.x = Math.min(cur.x, p.x);
+          cur.y = Math.min(cur.y, p.y);
+          cur.right = Math.max(cur.right, p.right);
+          cur.bottom = Math.max(cur.bottom, p.bottom);
+          cur.runs.push(p.run);
+        } else {
+          merged.push({ segId: p.segId, x: p.x, y: p.y, right: p.right, bottom: p.bottom, runs: [p.run] });
+        }
+      }
+      for (const m of merged) {
+        if (m.runs.length) m.runs[0].text = m.runs[0].text.replace(/^ +/, '');
+        if (m.runs.length) m.runs[m.runs.length - 1].text = m.runs[m.runs.length - 1].text.replace(/ +$/, '');
+        const cleanRuns = m.runs.filter(r => r.text.length > 0);
+        if (!cleanRuns.length || !cleanRuns.some(r => r.text.trim().length > 0)) continue;
         textBlocks.push({
-          x: seg.x,
-          y: seg.y,
-          w: seg.w,
-          h: seg.h,
+          x: m.x,
+          y: m.y,
+          w: Math.max(8, m.right - m.x),
+          h: Math.max(8, m.bottom - m.y),
           align: 'left',
           lhRatio: 1.08,
           singleLine: true,
