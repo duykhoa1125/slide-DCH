@@ -12,7 +12,9 @@ import io
 import math
 import os
 import re
+import struct
 import sys
+import urllib.request
 from pathlib import Path
 from urllib.parse import unquote
 
@@ -24,6 +26,8 @@ from pptx.dml.color import RGBColor
 from pptx.enum.dml import MSO_LINE_DASH_STYLE
 from pptx.enum.shapes import MSO_CONNECTOR, MSO_SHAPE
 from pptx.enum.text import MSO_ANCHOR, PP_ALIGN
+from pptx.opc.package import Part
+from pptx.opc.packuri import PackURI
 from pptx.util import Emu, Pt
 
 SLIDE_W_PX = 1600
@@ -1250,6 +1254,109 @@ def insert_slide_fx(slide, add_transition: bool, animated_groups: list[dict]) ->
         insert_before_ext(timing)
 
 
+FONT_SPECS = [
+    (
+        "Archivo",
+        "34",
+        {
+            "regular": "https://fonts.googleapis.com/css2?family=Archivo:wght@400",
+            "bold": "https://fonts.googleapis.com/css2?family=Archivo:wght@700",
+            "italic": "https://fonts.googleapis.com/css2?family=Archivo:ital,wght@1,400",
+            "boldItalic": "https://fonts.googleapis.com/css2?family=Archivo:ital,wght@1,700",
+        },
+    ),
+    (
+        "Be Vietnam Pro",
+        "34",
+        {
+            "regular": "https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400",
+            "bold": "https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@700",
+            "italic": "https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@1,400",
+            "boldItalic": "https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@1,700",
+        },
+    ),
+    (
+        "IBM Plex Mono",
+        "49",
+        {
+            "regular": "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400",
+            "bold": "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@700",
+            "italic": "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,400",
+            "boldItalic": "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,700",
+        },
+    ),
+]
+
+FONT_REL_TYPE = "http://schemas.openxmlformats.org/officeDocument/2006/relationships/font"
+
+
+def load_or_fetch_eot(fonts_dir: Path, slug: str, variant: str, url: str) -> bytes:
+    fonts_dir.mkdir(parents=True, exist_ok=True)
+    cached = fonts_dir / f"{slug}-{variant}.fntdata"
+    if cached.is_file():
+        return cached.read_bytes()
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)"})
+    css = urllib.request.urlopen(req, timeout=20).read().decode("utf-8")
+    urls = re.findall(r"url\(([^)]+)\)", css)
+    if not urls:
+        raise RuntimeError(f"Could not find EOT URL in {url}")
+    blob = urllib.request.urlopen(urllib.request.Request(urls[0], headers={"User-Agent": "Mozilla/4.0"}), timeout=20).read()
+    cached.write_bytes(blob)
+    return blob
+
+
+def embed_fonts(prs: Presentation, root_dir: Path) -> int:
+    """Embed Archivo, Be Vietnam Pro, and IBM Plex Mono (.fntdata EOT) into the PPTX package."""
+    fonts_dir = root_dir / "assets" / "fonts"
+    pres_el = prs._element
+    pres_el.set("embedTrueTypeFonts", "1")
+    pres_el.set("saveSubsetFonts", "0")
+
+    old_lst = pres_el.find(f"{{{P_NS}}}embeddedFontLst")
+    if old_lst is not None:
+        pres_el.remove(old_lst)
+
+    font_lst = etree.Element(f"{{{P_NS}}}embeddedFontLst")
+    font_idx = 1
+
+    for typeface, pitch_family, variants in FONT_SPECS:
+        slug = typeface.lower().replace(" ", "-")
+        emb_font = etree.SubElement(font_lst, f"{{{P_NS}}}embeddedFont")
+        reg_blob = load_or_fetch_eot(fonts_dir, slug, "regular", variants["regular"])
+        panose = reg_blob[16:26].hex() if len(reg_blob) >= 26 else "00000000000000000000"
+        etree.SubElement(
+            emb_font,
+            f"{{{P_NS}}}font",
+            typeface=typeface,
+            panose=panose,
+            pitchFamily=pitch_family,
+            charset="0",
+        )
+        for var, url in variants.items():
+            blob = reg_blob if var == "regular" else load_or_fetch_eot(fonts_dir, slug, var, url)
+            part = Part(
+                PackURI(f"/ppt/fonts/font{font_idx}.fntdata"),
+                "application/x-fontdata",
+                prs.part.package,
+                blob=blob,
+            )
+            r_id = prs.part.relate_to(part, FONT_REL_TYPE)
+            var_el = etree.SubElement(emb_font, f"{{{P_NS}}}{var}")
+            var_el.set(f"{{{R_NS}}}id", r_id)
+            font_idx += 1
+
+    # ECMA-376 CT_Presentation sequence: <p:embeddedFontLst> precedes <p:defaultTextStyle>
+    default_ts = pres_el.find(f"{{{P_NS}}}defaultTextStyle")
+    modify_ver = pres_el.find(f"{{{P_NS}}}modifyVerifier")
+    ext_lst = pres_el.find(f"{{{P_NS}}}extLst")
+    anchor = next((x for x in (default_ts, modify_ver, ext_lst) if x is not None), None)
+    if anchor is not None:
+        anchor.addprevious(font_lst)
+    else:
+        pres_el.append(font_lst)
+    return font_idx - 1
+
+
 def export_deck(root_dir: Path, out_path: Path) -> None:
     chrome_exe = find_chrome()
     index_url = (root_dir / "index.html").as_uri()
@@ -1515,9 +1622,10 @@ def export_deck(root_dir: Path, out_path: Path) -> None:
 
         browser.close()
 
+    embedded_count = embed_fonts(prs, root_dir)
     prs.save(str(out_path))
     size_mb = out_path.stat().st_size / (1024 * 1024)
-    print(f"Saved {out_path} ({size_mb:.2f} MB) | shapes={total_shapes}, images={total_pics}", flush=True)
+    print(f"Saved {out_path} ({size_mb:.2f} MB) | shapes={total_shapes}, images={total_pics}, embedded_fonts={embedded_count}", flush=True)
 
 
 def main() -> int:
