@@ -111,6 +111,7 @@ EXTRACT_SLIDE_JS = """(slideIdx) => {
 
   // 1. Tag animation groups matching styles/animations.css
   document.querySelectorAll('[data-ag]').forEach(el => el.removeAttribute('data-ag'));
+  document.querySelectorAll('[data-hl-host]').forEach(el => el.removeAttribute('data-hl-host'));
 
   const parseDelayVar = (el) => {
     let cur = el;
@@ -308,6 +309,7 @@ EXTRACT_SLIDE_JS = """(slideIdx) => {
     const radius = parseFloat(cs.borderTopLeftRadius) || 0;
 
     if (hasBg || fullBorder || sh) {
+      if (isFullBleed && el === firstChild) continue;
       // Skip inner frame container if parent .slide already has same bg
       const isCap = el.classList.contains('cap') && !!el.closest('.imgbig');
       let capRadius = radius;
@@ -454,6 +456,11 @@ EXTRACT_SLIDE_JS = """(slideIdx) => {
     extractInlineRuns(el, makeState(el), runs);
     const paras = runsToParagraphs(runs);
     if (!paras.length) return;
+    const hostEl = el.classList.contains('hl') ? el.closest('h2, .bigtitle, .statement, h3, p') : null;
+    if (hostEl && !hostEl.hasAttribute('data-hl-host')) {
+      hostEl.setAttribute('data-hl-host', String(badges.length));
+    }
+    const hostId = hostEl ? parseInt(hostEl.getAttribute('data-hl-host'), 10) : -1;
     badges.push({
       x: r.left,
       y: r.top,
@@ -469,6 +476,8 @@ EXTRACT_SLIDE_JS = """(slideIdx) => {
       padT: parseFloat(cs.paddingTop) || 0,
       padB: parseFloat(cs.paddingBottom) || 0,
       paras,
+      hostId,
+      isHl: el.classList.contains('hl'),
       agId: getAgId(el)
     });
   };
@@ -549,6 +558,7 @@ EXTRACT_SLIDE_JS = """(slideIdx) => {
         align: cs.textAlign || 'left',
         lhRatio,
         singleLine: false,
+        inFdSide: !!el.closest('.fd-side'),
         paras,
         agId
       });
@@ -703,6 +713,7 @@ EXTRACT_SLIDE_JS = """(slideIdx) => {
         if (m.runs.length) m.runs[m.runs.length - 1].text = m.runs[m.runs.length - 1].text.replace(/ +$/, '');
         const cleanRuns = m.runs.filter(r => r.text.length > 0);
         if (!cleanRuns.length || !cleanRuns.some(r => r.text.trim().length > 0)) continue;
+        const hostId = el.hasAttribute('data-hl-host') ? parseInt(el.getAttribute('data-hl-host'), 10) : -1;
         textBlocks.push({
           x: m.x,
           y: m.y,
@@ -711,6 +722,9 @@ EXTRACT_SLIDE_JS = """(slideIdx) => {
           align: 'left',
           lhRatio: 1.08,
           singleLine: true,
+          hostId,
+          lineY: m.y,
+          lineBot: m.bottom,
           paras: [cleanRuns],
           agId
         });
@@ -980,6 +994,20 @@ EXTRACT_SLIDE_JS = """(slideIdx) => {
     });
   });
 
+  // 4c. Clickable transparent hyperlink regions over <a class="src-link"> (keeps CSS text color intact!)
+  const links = [];
+  inner.querySelectorAll('a.src-link[href]').forEach(a => {
+    const r = a.getBoundingClientRect();
+    if (r.width < 2 || r.height < 2) return;
+    links.push({
+      x: Math.max(0, r.left - 2),
+      y: Math.max(0, r.top - 2),
+      w: Math.min(1600 - Math.max(0, r.left - 2), r.width + 4),
+      h: Math.min(900 - Math.max(0, r.top - 2), r.height + 4),
+      href: a.getAttribute('href')
+    });
+  });
+
   // 5. Speaker notes
   const noteLines = [];
   const title = slide.dataset.title || '';
@@ -1011,6 +1039,7 @@ EXTRACT_SLIDE_JS = """(slideIdx) => {
     textBlocks,
     svgItems,
     doodleItems,
+    links,
     notes: noteLines.join('\\n')
   };
 }"""
@@ -1063,9 +1092,23 @@ def set_solid_fill_alpha(fill_obj, rgb: RGBColor, alpha: float) -> None:
 
 
 def set_linear_gradient(shape, css_grad: str) -> bool:
-    stops = re.findall(r"(rgba?\([^)]+\))\s*([0-9.]+%)?", css_grad)
+    parts = re.split(r"\),\s*(?=linear-gradient\()", css_grad)
+    best_stops = []
+    best_grad = css_grad
+    best_score = -1.0
+    for part in parts:
+        st = re.findall(r"(rgba?\([^)]+\))\s*([0-9.]+%)?", part)
+        if len(st) >= 2:
+            alphas = [parse_color(c)[1] for c, _ in st if parse_color(c)]
+            score = sum(alphas) / max(1, len(alphas))
+            if score > best_score:
+                best_score = score
+                best_stops = st
+                best_grad = part
+    stops = best_stops
     if len(stops) < 2:
         return False
+    css_grad = best_grad
     parsed_stops = []
     n = len(stops)
     for idx, (col_str, pos_str) in enumerate(stops):
@@ -1289,8 +1332,6 @@ def write_paragraphs(tf, paras: list[list[dict]], align_str: str = "left", lh_ra
             if r_meta.get("spcPx") and abs(r_meta["spcPx"]) > 0.2:
                 spc_hundredths = int(round(r_meta["spcPx"] * PX_TO_PT * 100))
                 r_pr.set("spc", str(spc_hundredths))
-            if r_meta.get("href"):
-                run.hyperlink.address = r_meta["href"]
 
 
 def build_transition_xml() -> etree._Element:
@@ -1644,6 +1685,86 @@ def embed_fonts(prs: Presentation, root_dir: Path) -> int:
     return font_idx - 1
 
 
+def reflow_header_lines(prs: Presentation, out_path: Path, slide_hl_items: dict[int, list[dict]]) -> int:
+    """Measure exact rendered TextRange.BoundWidth in WPS/Office and reflow inline .hl header lines cleanly."""
+    if not any(slide_hl_items.values()):
+        return 0
+    try:
+        import win32com.client
+        app = win32com.client.Dispatch("KWPP.Application")
+        wpp_prs = app.Presentations.Open(str(out_path.resolve()), True, False, False)
+    except Exception:
+        return 0
+
+    PT_TO_EMU = 12700
+    reflowed_lines = 0
+    try:
+        for s_idx, items in slide_hl_items.items():
+            if not items:
+                continue
+            wpp_slide = wpp_prs.Slides(s_idx + 1)
+            bound_widths: dict[int, float] = {}
+            for k in range(1, wpp_slide.Shapes.Count + 1):
+                wsh = wpp_slide.Shapes.Item(k)
+                try:
+                    if wsh.HasTextFrame and wsh.TextFrame.HasText:
+                        bound_widths[int(wsh.Id)] = float(wsh.TextFrame.TextRange.BoundWidth)
+                except Exception:
+                    pass
+
+            # Group items by host_id, then by vertical visual line overlap
+            by_host: dict[int, list[dict]] = {}
+            for it in items:
+                by_host.setdefault(it["host_id"], []).append(it)
+
+            for host_items in by_host.values():
+                # Cluster vertically overlapping items into lines
+                lines: list[list[dict]] = []
+                for it in sorted(host_items, key=lambda x: (x["y"], x["orig_x"])):
+                    placed = False
+                    for ln in lines:
+                        min_y = min(x["y"] for x in ln)
+                        max_b = max(x["bottom"] for x in ln)
+                        if it["y"] < max_b - 6 and it["bottom"] > min_y + 6:
+                            ln.append(it)
+                            placed = True
+                            break
+                    if not placed:
+                        lines.append([it])
+
+                for ln in lines:
+                    if len(ln) < 2 or not any(x["is_badge"] for x in ln):
+                        continue
+                    ln.sort(key=lambda x: x["orig_x"])
+                    first_x = ln[0]["shape"].left
+                    cursor = first_x
+                    for pos, it in enumerate(ln):
+                        shp = it["shape"]
+                        bw_pt = bound_widths.get(shp.shape_id)
+                        if bw_pt is None or bw_pt <= 1.0:
+                            bw_pt = shp.width / PT_TO_EMU
+                        bw_emu = round(bw_pt * PT_TO_EMU)
+
+                        if it["is_badge"]:
+                            pad_emu = round(10.0 * PT_TO_EMU)
+                            new_w = bw_emu + 2 * pad_emu
+                            if pos > 0:
+                                cursor += round(7.0 * PT_TO_EMU)
+                            shp.left = Emu(cursor)
+                            shp.width = Emu(new_w)
+                            shp.text_frame.margin_left = Emu(pad_emu)
+                            shp.text_frame.margin_right = Emu(pad_emu)
+                            cursor += new_w + round(10.0 * PT_TO_EMU)
+                        else:
+                            shp.left = Emu(cursor)
+                            shp.width = Emu(bw_emu + round(8.0 * PT_TO_EMU))
+                            cursor += bw_emu + round(3.0 * PT_TO_EMU)
+                    reflowed_lines += 1
+    finally:
+        wpp_prs.Close()
+    return reflowed_lines
+
+
 def export_deck(root_dir: Path, out_path: Path) -> None:
     chrome_exe = find_chrome()
     index_url = (root_dir / "index.html").as_uri()
@@ -1656,6 +1777,7 @@ def export_deck(root_dir: Path, out_path: Path) -> None:
 
     total_shapes = 0
     total_pics = 0
+    slide_hl_items: dict[int, list[dict]] = {}
 
     with sync_playwright() as p:
         browser = p.chromium.launch(executable_path=chrome_exe)
@@ -1887,6 +2009,7 @@ def export_deck(root_dir: Path, out_path: Path) -> None:
                     register_shape(tb, item["agId"])
 
             # 9. Native badges (.hl, .s-num, .chip, .scope-pill): unified rounded shape + centered text
+            hl_items_this_slide: list[dict] = []
             for bg in meta["badges"]:
                 stype = choose_rect_type(bg["radius"], bg["w"], bg["h"])
                 shp = slide.shapes.add_shape(stype, emu(bg["x"]), emu(bg["y"]), emu(bg["w"]), emu(bg["h"]))
@@ -1913,10 +2036,21 @@ def export_deck(root_dir: Path, out_path: Path) -> None:
                 tf.word_wrap = False
                 write_paragraphs(tf, bg["paras"], "center", lh_ratio=1.05, font_scale=FONT_SCALE)
                 register_shape(shp, bg["agId"])
+                if bg.get("isHl") and bg.get("hostId", -1) >= 0:
+                    hl_items_this_slide.append(
+                        {
+                            "shape": shp,
+                            "is_badge": True,
+                            "host_id": bg["hostId"],
+                            "y": bg["y"],
+                            "bottom": bg["y"] + bg["h"],
+                            "orig_x": bg["x"],
+                        }
+                    )
 
             # 10. All native editable text boxes
             for tb_meta in meta["textBlocks"]:
-                extra_w = 10.0 if tb_meta["singleLine"] else 8.0
+                extra_w = 12.0 if tb_meta["singleLine"] else 10.0
                 extra_h = 4.0
                 tb = slide.shapes.add_textbox(
                     emu(tb_meta["x"]),
@@ -1928,8 +2062,38 @@ def export_deck(root_dir: Path, out_path: Path) -> None:
                 tf.margin_left = tf.margin_right = tf.margin_top = tf.margin_bottom = Emu(0)
                 tf.word_wrap = not tb_meta["singleLine"]
                 tf.vertical_anchor = MSO_ANCHOR.TOP
-                write_paragraphs(tf, tb_meta["paras"], tb_meta["align"], lh_ratio=tb_meta["lhRatio"], font_scale=FONT_SCALE)
+                tb_fscale = FONT_SCALE if tb_meta["singleLine"] else (0.89 if tb_meta.get("inFdSide") else 0.94)
+                tb_lh = tb_meta["lhRatio"] if tb_meta["singleLine"] else (1.12 if tb_meta.get("inFdSide") else min(tb_meta["lhRatio"] * 0.93, 1.24))
+                write_paragraphs(tf, tb_meta["paras"], tb_meta["align"], lh_ratio=tb_lh, font_scale=tb_fscale)
                 register_shape(tb, tb_meta["agId"])
+                if tb_meta.get("hostId", -1) >= 0:
+                    hl_items_this_slide.append(
+                        {
+                            "shape": tb,
+                            "is_badge": False,
+                            "host_id": tb_meta["hostId"],
+                            "y": tb_meta["lineY"],
+                            "bottom": tb_meta["lineBot"],
+                            "orig_x": tb_meta["x"],
+                        }
+                    )
+
+            slide_hl_items[idx] = hl_items_this_slide
+
+            # 10b. Transparent clickable hyperlink hotspots (preserves exact CSS link text color)
+            for link in meta.get("links", []):
+                hs = slide.shapes.add_shape(
+                    MSO_SHAPE.RECTANGLE,
+                    emu(link["x"]),
+                    emu(link["y"]),
+                    max(Emu(6350), emu(link["w"])),
+                    max(Emu(6350), emu(link["h"])),
+                )
+                hs.fill.background()
+                hs.line.fill.background()
+                hs.shadow.inherit = False
+                hs.click_action.hyperlink.address = link["href"]
+                total_shapes += 1
 
             # 11. Speaker notes
             if meta["notes"]:
@@ -1956,8 +2120,11 @@ def export_deck(root_dir: Path, out_path: Path) -> None:
 
     embedded_count = embed_fonts(prs, root_dir)
     prs.save(str(out_path))
+    reflowed = reflow_header_lines(prs, out_path, slide_hl_items)
+    if reflowed > 0:
+        prs.save(str(out_path))
     size_mb = out_path.stat().st_size / (1024 * 1024)
-    print(f"Saved {out_path} ({size_mb:.2f} MB) | shapes={total_shapes}, images={total_pics}, embedded_fonts={embedded_count}", flush=True)
+    print(f"Saved {out_path} ({size_mb:.2f} MB) | shapes={total_shapes}, images={total_pics}, embedded_fonts={embedded_count}, reflowed_lines={reflowed}", flush=True)
 
 
 def main() -> int:
